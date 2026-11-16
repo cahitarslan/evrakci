@@ -248,8 +248,37 @@ public sealed class MainViewModel : ObservableObject
     public AsyncCommand InstallUpdateCommand { get; }
     public bool UpdateReady => _updater.IsReady;
 
-    /// <summary>After the window appears: fetches updates quietly.</summary>
-    public Task StartBackgroundWorkAsync() => _updater.CheckAsync();
+    /// <summary>After the window appears: asks once whether updates may be checked, then checks quietly if allowed.</summary>
+    public async Task StartBackgroundWorkAsync()
+    {
+        if (string.IsNullOrWhiteSpace(Distribution.UpdateUrl)) return;
+        if (!_settings.UpdateChoiceMade)
+        {
+            _settings.CheckForUpdates = await Dialogs.Confirm(
+                "Evrakçı her açılışta evrakci.netlify.app adresine yeni bir sürüm olup olmadığını sorabilir; varsa indirip kapanışta kurar. " +
+                "İstekte yalnızca kurulu sürüm numarası gider; sizinle, dosyalarınızla ya da müvekkil bilgileriyle ilgili hiçbir şey gönderilmez.\n\n" +
+                "Bu ayarı daha sonra sağ üstteki tema menüsünden (Güncellemeleri otomatik denetle) değiştirebilirsiniz.",
+                "Otomatik güncelleme", "Güncellemeleri denetle", "Denetleme");
+            _settings.UpdateChoiceMade = true;
+            _settings.Save();
+            Raise(nameof(CheckForUpdates));
+        }
+        if (_settings.CheckForUpdates) await _updater.CheckAsync();
+    }
+
+    /// <summary>Menu toggle "Güncellemeleri otomatik denetle". Off: the app never contacts the internet by itself.</summary>
+    public bool CheckForUpdates
+    {
+        get => _settings.CheckForUpdates;
+        set
+        {
+            if (_settings.CheckForUpdates == value) return;
+            _settings.CheckForUpdates = value;
+            _settings.Save();
+            Raise(nameof(CheckForUpdates));
+            Status = value ? "Güncellemeler bir sonraki açılışta denetlenecek." : "Otomatik güncelleme denetimi kapatıldı; uygulama kendiliğinden internete bağlanmayacak.";
+        }
+    }
 
     /// <summary>"Sistem", "Açık" or "Koyu"; applied at once and remembered.</summary>
     public string Theme

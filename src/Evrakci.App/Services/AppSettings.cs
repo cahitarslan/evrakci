@@ -18,6 +18,10 @@ public sealed class AppSettings
     public string? LastCaseFolder { get; set; }
     /// <summary>Template library folder; null means Belgelerim\Evrakçı\Şablonlar.</summary>
     public string? LibraryFolder { get; set; }
+    /// <summary>Ask the update address for a newer version on start (the only automatic network access).</summary>
+    public bool CheckForUpdates { get; set; } = true;
+    /// <summary>The user has been asked once whether updates may be checked automatically.</summary>
+    public bool UpdateChoiceMade { get; set; }
 
     [System.Text.Json.Serialization.JsonIgnore]
     public string LibraryRoot => string.IsNullOrWhiteSpace(LibraryFolder)

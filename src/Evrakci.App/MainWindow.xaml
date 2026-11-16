@@ -150,6 +150,7 @@
                             <MenuItem Header="Koyu" IsChecked="{Binding IsThemeDark, Mode=OneWay}"
                                       Command="{Binding SetThemeCommand}" CommandParameter="Koyu" />
                             <Separator />
+                            <MenuItem Header="Güncellemeleri otomatik denetle" IsCheckable="True" IsChecked="{Binding CheckForUpdates}" />
                             <MenuItem Header="Kaynak kodu ve hata bildirimi (GitHub)…" Command="{Binding OpenSourceCommand}" />
                             <MenuItem Header="{Binding VersionText}" IsEnabled="False" />
                         </ContextMenu>

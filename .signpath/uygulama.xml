@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SignPath artifact configuration "uygulama": the published app folder (uploaded by GitHub Actions as a zip).
+     Signs only Evrakçı's own binaries; .NET runtime and third-party DLLs stay as their vendors shipped them. -->
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <parameters>
+    <parameter name="version" required="true" />
+  </parameters>
+  <zip-file>
+    <pe-file-set product-name="Evrakçı" product-version="${version}">
+      <include path="Evrakci.exe" />
+      <include path="Evrakci.dll" />
+      <include path="Evrakci.Core.dll" />
+      <for-each>
+        <authenticode-sign />
+      </for-each>
+    </pe-file-set>
+  </zip-file>
+</artifact-configuration>

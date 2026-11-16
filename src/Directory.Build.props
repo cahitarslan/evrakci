@@ -1,0 +1,13 @@
+<Project>
+  <!-- Shared by Evrakci.App and Evrakci.Core. The release workflow overrides Version with the tag (v1.2.3 → 1.2.3).
+       SignPath checks that every signed file carries the same product name and version. -->
+  <PropertyGroup>
+    <Product>Evrakçı</Product>
+    <Version>1.2.0</Version>
+    <Authors>Cahit Arslan</Authors>
+    <Company>Evrakçı</Company>
+    <Copyright>Copyright © 2026 Cahit Arslan. AGPL-3.0.</Copyright>
+    <!-- Keep ProductVersion exactly "1.2.3" (no "+commit" suffix). -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+</Project>

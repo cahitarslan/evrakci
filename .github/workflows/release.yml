@@ -1,0 +1,168 @@
+name: Sürüm yayınla
+
+# Bir "v1.2.3" etiketi gönderilince: test eder, derler, (SignPath ayarlıysa) imzalar, Velopack ile paketler,
+# GitHub Releases'a yükler ve (Netlify anahtarı varsa) evrakci.netlify.app'teki güncelleme klasörünü yeniler.
+#
+#   git tag v1.2.0
+#   git push origin v1.2.0
+#
+# İmzalama için depo ayarları (Settings → Secrets and variables → Actions):
+#   secret   SIGNPATH_API_TOKEN            SignPath'te "submitter" yetkili kullanıcının API anahtarı
+#   variable SIGNPATH_ORGANIZATION_ID      SignPath kuruluş kimliği
+#   variable SIGNPATH_PROJECT_SLUG         ör. evrakci
+#   variable SIGNPATH_SIGNING_POLICY_SLUG  ör. release-signing
+# Site yüklemesi için:
+#   secret   NETLIFY_AUTH_TOKEN            Netlify kişisel erişim anahtarı
+#   variable NETLIFY_SITE_ID               evrakci.netlify.app site kimliği
+# SIGNPATH_ORGANIZATION_ID boşken sürüm imzasız yayınlanır.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Sürüm numarası (ör. 1.2.0); etiket bu commit üzerinde oluşturulur'
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: windows-latest
+    env:
+      SIGN: ${{ vars.SIGNPATH_ORGANIZATION_ID != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Sürüm numarası
+        id: v
+        shell: pwsh
+        env:
+          EVENT: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          $v = if ($env:EVENT -eq 'push') { $env:REF_NAME.TrimStart('v') } else { $env:INPUT_VERSION }
+          if ($v -notmatch '^\d+\.\d+\.\d+$') { throw "Geçersiz sürüm: $v" }
+          "version=$v" >> $env:GITHUB_OUTPUT
+
+      - name: Testler
+        run: dotnet test tests/Evrakci.Tests --configuration Release
+
+      - name: Derle
+        run: >
+          dotnet publish src/Evrakci.App -c Release -r win-x64 --self-contained true
+          -p:Version=${{ steps.v.outputs.version }} -p:DebugType=none -o publish
+
+      # --- İmza 1: uygulamanın kendi dosyaları (Evrakci.exe, Evrakci.dll, Evrakci.Core.dll) ---
+      - name: İmzasız uygulamayı yükle
+        id: unsigned-app
+        if: env.SIGN == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: imzasiz-uygulama
+          path: publish/
+          if-no-files-found: error
+
+      - name: Uygulamayı imzala (SignPath)
+        if: env.SIGN == 'true'
+        uses: signpath/github-action-submit-signing-request@v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: uygulama
+          github-artifact-id: ${{ steps.unsigned-app.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 7200
+          output-artifact-directory: publish-imzali
+          parameters: |
+            version: "${{ steps.v.outputs.version }}"
+
+      - name: İmzalı dosyaları kullan
+        if: env.SIGN == 'true'
+        shell: pwsh
+        run: |
+          Remove-Item publish -Recurse -Force
+          Rename-Item publish-imzali publish
+
+      - name: Paketle (Velopack)
+        shell: pwsh
+        run: |
+          dotnet tool install -g vpk --version 1.2.161
+          vpk pack --packId Evrakci --packVersion ${{ steps.v.outputs.version }} --packDir publish --mainExe Evrakci.exe `
+            --packTitle "Evrakçı" --packAuthors "Evrakçı" --icon Marka/evrakci.ico --outputDir Releases --delta none
+          if ($LASTEXITCODE -ne 0) { throw "Paketleme başarısız." }
+
+      # --- İmza 2: kurulum dosyası (tarayıcının denetlediği dosya) ---
+      - name: İmzasız kurulumu yükle
+        id: unsigned-setup
+        if: env.SIGN == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: imzasiz-kurulum
+          path: Releases/Evrakci-win-Setup.exe
+          if-no-files-found: error
+
+      - name: Kurulumu imzala (SignPath)
+        if: env.SIGN == 'true'
+        uses: signpath/github-action-submit-signing-request@v3
+        with:
+          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
+          organization-id: ${{ vars.SIGNPATH_ORGANIZATION_ID }}
+          project-slug: ${{ vars.SIGNPATH_PROJECT_SLUG }}
+          signing-policy-slug: ${{ vars.SIGNPATH_SIGNING_POLICY_SLUG }}
+          artifact-configuration-slug: kurulum
+          github-artifact-id: ${{ steps.unsigned-setup.outputs.artifact-id }}
+          wait-for-completion: true
+          wait-for-completion-timeout-in-seconds: 7200
+          output-artifact-directory: kurulum-imzali
+
+      - name: İmzalı kurulumu kullan
+        if: env.SIGN == 'true'
+        shell: pwsh
+        run: Copy-Item kurulum-imzali/Evrakci-win-Setup.exe Releases/Evrakci-win-Setup.exe -Force
+
+      - name: GitHub sürümü
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.v.outputs.version }}
+        run: |
+          $notes = "Windows 10 ve 11 için. Kurulum: Evrakci-win-Setup.exe · Kurulumsuz: Evrakci-win-Portable.zip`n`n" +
+                   "[Code signing policy / Kod imzalama politikası](https://evrakci.netlify.app/kod-imzalama.html)"
+          # Velopack dosyaları da eklenir: site yüklemesi elle yapılacaksa buradan indirilebilir.
+          gh release create "v$env:VERSION" Releases/Evrakci-win-Setup.exe Releases/Evrakci-win-Portable.zip `
+            "Releases/Evrakci-$env:VERSION-full.nupkg" Releases/releases.win.json Releases/assets.win.json Releases/RELEASES `
+            --title "Evrakçı $env:VERSION" --notes "$notes" --generate-notes --target "$env:GITHUB_SHA"
+          if ($LASTEXITCODE -ne 0) { throw "GitHub sürümü oluşturulamadı." }
+
+      # --- Site: güncelleme klasörü (kurulu uygulamalar buradan yeni sürümü alır) ---
+      - name: Siteyi ve güncelleme dosyalarını yayınla (Netlify)
+        shell: pwsh
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}
+          VERSION: ${{ steps.v.outputs.version }}
+        run: |
+          if (-not $env:NETLIFY_AUTH_TOKEN -or -not $env:NETLIFY_SITE_ID) {
+            Write-Host "::warning::NETLIFY_AUTH_TOKEN ya da NETLIFY_SITE_ID yok; site ve güncelleme klasörü yenilenmedi."
+            return
+          }
+          New-Item -ItemType Directory -Force site/public/guncelleme | Out-Null
+          Get-ChildItem Releases -File | Where-Object { $_.Name -notlike '*Portable.zip' } |
+            ForEach-Object { Copy-Item $_.FullName site/public/guncelleme/ -Force }
+          npx --yes netlify-cli@27.16.2 deploy --prod --no-build --dir site/public --site $env:NETLIFY_SITE_ID --message "Evrakçı $env:VERSION"
+          if ($LASTEXITCODE -ne 0) { throw "Siteye yükleme başarısız." }
