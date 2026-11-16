@@ -1,0 +1,27 @@
+name: Şablon metni önerisi
+description: Hazır setlerdeki bir hukuki metin, eksik belge ya da yeni arabuluculuk türü
+labels: [şablon]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Şablon metinleriyle ilgili öneriler en değerli katkılardan biridir. Gerçek dosyalardan metin aktarıyorsanız isim, numara ve adresleri çıkarın.
+  - type: input
+    id: set
+    attributes:
+      label: Set ve belge
+      placeholder: "Kira → 04 Anlaşma Belgesi"
+    validations:
+      required: true
+  - type: textarea
+    id: oneri
+    attributes:
+      label: Öneri
+      description: Şu anki metin ve önerdiğiniz metin
+    validations:
+      required: true
+  - type: textarea
+    id: dayanak
+    attributes:
+      label: Dayanak
+      description: Kanun maddesi, yönetmelik, daire başkanlığı rehberi ya da uygulama

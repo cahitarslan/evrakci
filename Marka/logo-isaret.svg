@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198 256" width="198" height="256">
+<!-- Evrakçı: dilekçe kâğıdı — katlanmış köşe, çift kenar çizgisi, yazı satırları, mühür -->
+<path d="M24 8 H138 L184 54 V238 Q184 248 174 248 H24 Q14 248 14 238 V18 Q14 8 24 8 Z" fill="#FFFFFF"/>
+<path d="M24 8 H138 L184 54 V238 Q184 248 174 248 H24 Q14 248 14 238 V18 Q14 8 24 8 Z" fill="none" stroke="#1A1A22" stroke-width="7" stroke-linejoin="round"/>
+<path d="M138 8 V44 Q138 54 148 54 H184" fill="none" stroke="#1A1A22" stroke-width="7" stroke-linejoin="round"/>
+<rect x="44.5" y="34" width="3" height="192" fill="#4B2E83"/>
+<rect x="51.5" y="34" width="3" height="192" fill="#4B2E83"/>
+<rect x="68" y="82" width="90" height="9" rx="4.5" fill="#B9B6C6"/>
+<rect x="68" y="106" width="96" height="9" rx="4.5" fill="#B9B6C6"/>
+<rect x="68" y="130" width="74" height="9" rx="4.5" fill="#B9B6C6"/>
+<rect x="68" y="154" width="88" height="9" rx="4.5" fill="#B9B6C6"/>
+<circle cx="140" cy="204" r="22" fill="none" stroke="#4B2E83" stroke-width="5"/>
+<circle cx="140" cy="204" r="14" fill="none" stroke="#4B2E83" stroke-width="2"/>
+</svg>

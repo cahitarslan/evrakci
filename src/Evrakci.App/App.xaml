@@ -1,0 +1,123 @@
+﻿<Application x:Class="Evrakci.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:local="clr-namespace:Evrakci.App"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Brand typefaces (Marka\Marka Rehberi.html): Plex Sans for the interface, Plex Serif for headings,
+                 the way a petition's title stands above its text. App.OnStartup makes Plex Sans the default. -->
+            <FontFamily x:Key="BrandSans">pack://application:,,,/Evrakci;component/Assets/Fonts/#IBM Plex Sans</FontFamily>
+            <FontFamily x:Key="BrandSerif">pack://application:,,,/Evrakci;component/Assets/Fonts/#IBM Plex Serif</FontFamily>
+            <!-- WPF-UI's controls read their typeface from this key rather than inheriting it. -->
+            <FontFamily x:Key="ContentControlThemeFontFamily">pack://application:,,,/Evrakci;component/Assets/Fonts/#IBM Plex Sans</FontFamily>
+
+            <!-- Larger text and controls than the Fluent defaults: the app is also used by older people. -->
+            <sys:Double x:Key="ControlContentThemeFontSize">16</sys:Double>
+            <!-- Bigger click targets. Based on WPF-UI's named styles: basing them on the type key would point at themselves. -->
+            <Style TargetType="ui:Button" BasedOn="{StaticResource DefaultUiButtonStyle}">
+                <Setter Property="MinHeight" Value="40" />
+                <Setter Property="Padding" Value="14,8" />
+            </Style>
+            <Style TargetType="ui:TextBox" BasedOn="{StaticResource DefaultUiTextBoxStyle}">
+                <Setter Property="MinHeight" Value="40" />
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource DefaultComboBoxStyle}">
+                <Setter Property="MinHeight" Value="40" />
+            </Style>
+            <Style TargetType="ToggleButton" BasedOn="{StaticResource DefaultToggleButtonStyle}">
+                <Setter Property="MinHeight" Value="38" />
+                <Setter Property="Template" Value="{DynamicResource BrandToggleTemplate}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter Property="Foreground" Value="White" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <!-- Toggle buttons (tabs, "Boş bırak", "Hatırla"): the Fluent template turns a checked button almost white
+                 under the mouse on the dark theme, hiding its white text. Every state here uses the brand colours. -->
+            <ControlTemplate x:Key="BrandToggleTemplate" TargetType="ToggleButton">
+                <Border x:Name="Bd" CornerRadius="6" BorderThickness="1" Padding="{TemplateBinding Padding}"
+                        Background="{DynamicResource ControlFillColorDefaultBrush}"
+                        BorderBrush="{DynamicResource ControlStrokeColorDefaultBrush}">
+                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" />
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ControlFillColorSecondaryBrush}" />
+                    </Trigger>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ToggleButtonBackgroundChecked}" />
+                        <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource ToggleButtonBackgroundChecked}" />
+                    </Trigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsChecked" Value="True" />
+                            <Condition Property="IsMouseOver" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AccentButtonBackgroundPointerOver}" />
+                        <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource AccentButtonBackgroundPointerOver}" />
+                    </MultiTrigger>
+                    <Trigger Property="IsPressed" Value="True">
+                        <Setter TargetName="Bd" Property="Background" Value="{DynamicResource ToggleButtonBackgroundCheckedPressed}" />
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter TargetName="Bd" Property="Opacity" Value="0.5" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            <Style TargetType="ToolTip" BasedOn="{StaticResource DefaultToolTipStyle}">
+                <Setter Property="FontSize" Value="15" />
+            </Style>
+
+            <local:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+            <local:BoolToVisibilityConverter x:Key="InverseBoolToVisibility" Invert="True" />
+            <local:InverseBoolConverter x:Key="InverseBool" />
+            <local:NullToVisibilityConverter x:Key="NullToVisibility" />
+            <local:StepVisibilityConverter x:Key="StepVisibility" />
+
+            <!-- Fixed "paper" colours for the document preview (the page stays white in both themes). -->
+            <SolidColorBrush x:Key="PaperBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="PaperTextBrush" Color="#1B1B1B" />
+            <SolidColorBrush x:Key="ValueHighlightBrush" Color="#FFEFC2" />
+            <SolidColorBrush x:Key="SuffixHighlightBrush" Color="#D3E9FF" />
+            <SolidColorBrush x:Key="SuffixOverriddenBrush" Color="#E8D9FF" />
+            <SolidColorBrush x:Key="MissingHighlightBrush" Color="#FDE2E2" />
+            <SolidColorBrush x:Key="MissingTextBrush" Color="#B3261E" />
+            <SolidColorBrush x:Key="RemovedTextBrush" Color="#9A9A9A" />
+            <SolidColorBrush x:Key="VariableChipBrush" Color="#D6ECDD" />
+
+            <Style x:Key="SectionTitle" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource BrandSerif}" />
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorPrimaryBrush}" />
+            </Style>
+            <!-- The one big instruction on a screen ("Dosyanın türünü seçin"). -->
+            <Style x:Key="DisplayTitle" TargetType="TextBlock" BasedOn="{StaticResource SectionTitle}">
+                <Setter Property="FontSize" Value="32" />
+            </Style>
+            <Style x:Key="Subtle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Foreground" Value="{DynamicResource TextFillColorSecondaryBrush}" />
+            </Style>
+            <Style x:Key="ErrorText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="Foreground" Value="{DynamicResource SystemFillColorCriticalBrush}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

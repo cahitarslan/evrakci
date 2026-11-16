@@ -1,0 +1,31 @@
+<ui:FluentWindow x:Class="Evrakci.App.Views.SuffixWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Width="440" SizeToContent="Height" ResizeMode="NoResize"
+                 WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+                 ExtendsContentIntoTitleBar="True" WindowBackdropType="None">
+    <StackPanel>
+        <ui:TitleBar Title="Eki düzelt" ShowMaximize="False" ShowMinimize="False" />
+        <StackPanel Margin="24,4,24,20">
+            <TextBlock Text="Bu yerdeki eki düzeltin" FontSize="18" FontWeight="SemiBold" />
+            <TextBlock Margin="0,6,0,14" Style="{StaticResource Subtle}"
+                       Text="Değişiklik yalnızca bu belgedeki bu yeri etkiler. Değer değişirse ek yeniden otomatik seçilir." />
+            <Border Padding="12,10" CornerRadius="6" Background="{StaticResource PaperBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                <TextBlock FontFamily="Times New Roman" FontSize="17" Foreground="{StaticResource PaperTextBrush}" TextWrapping="Wrap">
+                    <Run x:Name="ValueRun" Background="{StaticResource ValueHighlightBrush}" /><Run x:Name="PreviewRun" Background="{StaticResource SuffixHighlightBrush}" />
+                </TextBlock>
+            </Border>
+            <TextBlock Text="Ek (kesme işareti olmadan)" Margin="0,14,0,4" />
+            <ui:TextBox x:Name="Input" TextChanged="OnChanged" ClearButtonEnabled="False" />
+            <TextBlock x:Name="AutoNote" Margin="0,6,0,0" Style="{StaticResource Subtle}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+                <ui:Button x:Name="ResetButton" Content="Otomatiğe dön" Click="OnReset" Margin="0,0,8,0" />
+                <ui:Button Content="Uygula" Appearance="Primary" Click="OnOk" Margin="0,0,8,0" IsDefault="True" />
+                <ui:Button Content="Vazgeç" IsCancel="True" />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</ui:FluentWindow>

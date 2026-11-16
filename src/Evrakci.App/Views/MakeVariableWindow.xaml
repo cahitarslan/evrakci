@@ -1,0 +1,60 @@
+<ui:FluentWindow x:Class="Evrakci.App.Views.MakeVariableWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Width="560" SizeToContent="Height" ResizeMode="NoResize"
+                 WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+                 ExtendsContentIntoTitleBar="True" WindowBackdropType="None">
+    <StackPanel>
+        <ui:TitleBar Title="Değişken yap" ShowMaximize="False" ShowMinimize="False" />
+        <StackPanel Margin="24,4,24,20">
+            <TextBlock Text="Seçilen metni değişkene çevir" FontSize="18" FontWeight="SemiBold" />
+            <TextBlock Margin="0,6,0,10" Style="{StaticResource Subtle}"
+                       Text="Metnin yerine şablona bir değişken yazılır; değeri her dosyada formdan girilir." />
+            <Border Padding="12,8" CornerRadius="6" Background="{StaticResource PaperBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                <TextBlock x:Name="Selected" FontFamily="Times New Roman" FontSize="15" TextWrapping="Wrap"
+                           Foreground="{StaticResource PaperTextBrush}" Background="{StaticResource ValueHighlightBrush}"
+                           HorizontalAlignment="Left" />
+            </Border>
+
+            <Grid Margin="0,14,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Değişken adı" VerticalAlignment="Center" />
+                <ComboBox x:Name="NameBox" Grid.Column="1" IsEditable="True" Margin="0,0,0,4"
+                          ToolTip="Yeni bir ad yazın ya da var olan bir değişkeni seçin" />
+                <TextBlock Grid.Row="1" Grid.Column="1" x:Name="ExistingNote" Margin="2,0,0,8" FontSize="14" TextWrapping="Wrap"
+                           Foreground="{DynamicResource TextFillColorSecondaryBrush}" />
+                <TextBlock Grid.Row="2" Text="Formdaki adı" VerticalAlignment="Center" />
+                <ui:TextBox Grid.Row="2" Grid.Column="1" x:Name="LabelBox" Margin="0,0,0,8" ClearButtonEnabled="False"
+                            PlaceholderText="Örn. Başvurucunun adı soyadı" />
+                <TextBlock Grid.Row="3" Text="Tipi" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="3" Grid.Column="1" x:Name="TypeBox" Margin="0,0,0,8" />
+                <TextBlock Grid.Row="4" Text="Formdaki grubu" VerticalAlignment="Center" />
+                <ComboBox Grid.Row="4" Grid.Column="1" x:Name="GroupBox" IsEditable="True" />
+            </Grid>
+
+            <TextBlock Text="Nerede uygulansın?" FontWeight="SemiBold" Margin="0,14,0,6" />
+            <RadioButton x:Name="ScopeHere" GroupName="Scope" Content="Yalnızca seçilen yerde" Margin="0,0,0,4" />
+            <RadioButton x:Name="ScopeDoc" GroupName="Scope" Margin="0,0,0,4" />
+            <RadioButton x:Name="ScopeSet" GroupName="Scope" />
+
+            <TextBlock x:Name="Error" Margin="0,10,0,0" Style="{StaticResource ErrorText}" Visibility="Collapsed" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,18,0,0">
+                <ui:Button Content="Değişken yap" Appearance="Primary" Click="OnOk" Margin="0,0,8,0" IsDefault="True" />
+                <ui:Button Content="Vazgeç" IsCancel="True" />
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</ui:FluentWindow>

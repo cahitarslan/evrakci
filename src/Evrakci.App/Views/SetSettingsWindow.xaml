@@ -1,0 +1,148 @@
+<ui:FluentWindow x:Class="Evrakci.App.Views.SetSettingsWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Width="980" Height="720" MinWidth="760" MinHeight="520"
+                 WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+                 ExtendsContentIntoTitleBar="True" WindowBackdropType="None">
+    <Window.Resources>
+        <Style x:Key="FormLabel" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,12,0,4" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style x:Key="Example" TargetType="TextBlock" BasedOn="{StaticResource Subtle}">
+            <Setter Property="Margin" Value="0,4,0,0" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ui:TitleBar Title="Set ayarları" ShowMinimize="False" />
+
+        <TabControl Grid.Row="1" Margin="16,0,16,0">
+            <TabItem Header="Genel">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="8,4,8,12" MaxWidth="760" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="24" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Set adı" Style="{StaticResource FormLabel}" />
+                            <ui:TextBox x:Name="SetName" />
+                            <TextBlock Text="Açıklama" Style="{StaticResource FormLabel}" />
+                            <ui:TextBox x:Name="SetDescription" TextWrapping="Wrap" AcceptsReturn="True" MinHeight="64" />
+                            <TextBlock Text="Değişken ayraçları" Style="{StaticResource FormLabel}" />
+                            <StackPanel Orientation="Horizontal">
+                                <ui:TextBox x:Name="OpenDelim" Width="90" TextChanged="OnExampleChanged" />
+                                <TextBlock Text="AD" Margin="10,0" VerticalAlignment="Center" />
+                                <ui:TextBox x:Name="CloseDelim" Width="90" TextChanged="OnExampleChanged" />
+                            </StackPanel>
+                            <TextBlock x:Name="DelimExample" Style="{StaticResource Example}" />
+                            <TextBlock Text="Çıktı alt klasörü (isteğe bağlı)" Style="{StaticResource FormLabel}" />
+                            <ui:TextBox x:Name="OutputFolder" PlaceholderText="ör. {{{TARAF1 ADI SOYADI}}} dosyası" />
+                            <TextBlock Style="{StaticResource Example}"
+                                       Text="Seçilen klasörün içinde bu adla bir alt klasör açılır; değişken içerebilir." />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Tarih biçimi" Style="{StaticResource FormLabel}" />
+                            <ComboBox x:Name="DateFormat" IsEditable="True" TextBoxBase.TextChanged="OnExampleChanged" SelectionChanged="OnExampleChanged">
+                                <ComboBoxItem Content="dd.MM.yyyy" />
+                                <ComboBoxItem Content="d MMMM yyyy" />
+                                <ComboBoxItem Content="dd/MM/yyyy" />
+                                <ComboBoxItem Content="d MMMM yyyy dddd" />
+                            </ComboBox>
+                            <TextBlock x:Name="DateExample" Style="{StaticResource Example}" />
+                            <TextBlock Text="Para biçimi" Style="{StaticResource FormLabel}" />
+                            <ComboBox x:Name="MoneyFormat" IsEditable="True" TextBoxBase.TextChanged="OnExampleChanged" SelectionChanged="OnExampleChanged">
+                                <ComboBoxItem Content="{}{tutar} {simge}" />
+                                <ComboBoxItem Content="{}{tutar}.-{simge}" />
+                                <ComboBoxItem Content="{}{simge} {tutar}" />
+                                <ComboBoxItem Content="{}{tutar} {kod}" />
+                            </ComboBox>
+                            <TextBlock x:Name="MoneyExample" Style="{StaticResource Example}" />
+                            <TextBlock Text="Telefon biçimi (# = rakam, 10 adet)" Style="{StaticResource FormLabel}" />
+                            <ComboBox x:Name="PhoneFormat" IsEditable="True" TextBoxBase.TextChanged="OnExampleChanged" SelectionChanged="OnExampleChanged">
+                                <ComboBoxItem Content="0### ### ## ##" />
+                                <ComboBoxItem Content="0 (###) ### ## ##" />
+                                <ComboBoxItem Content="(0###) ### ## ##" />
+                                <ComboBoxItem Content="+90 ### ### ## ##" />
+                            </ComboBox>
+                            <TextBlock x:Name="PhoneExample" Style="{StaticResource Example}" />
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="Döviz adları">
+                <StackPanel Margin="8,8,8,12" MaxWidth="700" HorizontalAlignment="Left">
+                    <TextBlock Style="{StaticResource Subtle}" Margin="0,0,0,10"
+                               Text="Tutarlar belgeye simgeyle, “.Yazıyla” biçiminde ana ve alt birim adlarıyla yazılır." />
+                    <DataGrid x:Name="CurrencyGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                              HeadersVisibility="Column" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Kod" Binding="{Binding Code}" IsReadOnly="True" Width="70" />
+                            <DataGridTextColumn Header="Simge" Binding="{Binding Symbol}" Width="90" />
+                            <DataGridTextColumn Header="Ana birim" Binding="{Binding Main}" Width="*" />
+                            <DataGridTextColumn Header="Alt birim" Binding="{Binding Sub}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Belgeler">
+                <DockPanel Margin="8,8,8,12">
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subtle}" Margin="0,0,0,10"
+                               Text="Çıktı dosyasının adı değişken içerebilir, ör. {{{TARAF1 ADI SOYADI}}}_Sözleşme.docx. Boş bırakılırsa şablonun adı kullanılır." />
+                    <DataGrid x:Name="DocumentGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                              HeadersVisibility="Column" CanUserReorderColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Şablon" Binding="{Binding Template}" IsReadOnly="True" Width="*" />
+                            <DataGridTextColumn Header="Çıktı adı" Binding="{Binding Output}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Alanlar">
+                <DockPanel Margin="8,8,8,12">
+                    <TextBlock DockPanel.Dock="Top" Style="{StaticResource Subtle}" Margin="0,0,0,10"
+                               Text="Etiket formda görünen addır. Tip şablonda yazılmışsa (ör. {{{TUTAR:Para}}}) burada değiştirilemez. Varsayılan değer her yeni dosyada hazır gelir." />
+                    <DataGrid x:Name="FieldGrid" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False"
+                              HeadersVisibility="Column" CanUserReorderColumns="False" CanUserSortColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Değişken" Binding="{Binding Name}" IsReadOnly="True" Width="1.2*" />
+                            <DataGridTextColumn Header="Etiket" Binding="{Binding Label}" Width="1.3*" />
+                            <DataGridTextColumn Header="Grup" Binding="{Binding Group}" Width="*" />
+                            <DataGridTemplateColumn Header="Tip" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Choices}" SelectedItem="{Binding TypeChoice, UpdateSourceTrigger=PropertyChanged}"
+                                                  IsEnabled="{Binding TypeEditable}" ToolTip="{Binding TypeNote}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Varsayılan" Binding="{Binding Default}" Width="*" />
+                            <DataGridTextColumn Header="İpucu" Binding="{Binding Hint}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+
+        <Border Grid.Row="2" Padding="16,12" BorderBrush="{DynamicResource DividerStrokeColorDefaultBrush}" BorderThickness="0,1,0,0">
+            <Grid>
+                <TextBlock x:Name="Problem" Style="{StaticResource ErrorText}" VerticalAlignment="Center" Margin="0,0,260,0" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <ui:Button Content="Kaydet" Appearance="Primary" Icon="{ui:SymbolIcon Save24}" Click="OnSave" Margin="0,0,8,0" MinWidth="110" />
+                    <ui:Button Content="Vazgeç" IsCancel="True" MinWidth="90" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</ui:FluentWindow>

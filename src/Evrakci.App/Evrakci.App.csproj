@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Evrakci</AssemblyName>
+    <RootNamespace>Evrakci.App</RootNamespace>
+    <Product>Evrakçı</Product>
+    <Version>1.1.0</Version>
+    <ApplicationIcon>Assets\evrakci.ico</ApplicationIcon>
+    <SatelliteResourceLanguages>tr;en</SatelliteResourceLanguages>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <!-- Program.Main lets Velopack handle install/update hooks before WPF starts. -->
+    <StartupObject>Evrakci.App.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Evrakci.Core\Evrakci.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Velopack" Version="1.2.161" />
+    <PackageReference Include="WPF-UI" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\evrakci.ico" />
+    <!-- Brand typefaces (IBM Plex, SIL Open Font License: Assets\Fonts\OFL.txt). -->
+    <Resource Include="Assets\Fonts\*.ttf" />
+  </ItemGroup>
+
+  <!-- Ready-made template sets (built by tools\Evrakci.SablonUretici), copied into the user's library on start. -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\..\Sablonlar\Hazır\**\*" LogicalName="Hazir/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>

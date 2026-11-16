@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evrakçı Marka Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* The same files the app embeds, for viewing offline. */
+  @font-face { font-family: "IBM Plex Sans"; src: url("../src/Evrakci.App/Assets/Fonts/IBMPlexSans-Regular.ttf"); font-weight: 400; }
+  @font-face { font-family: "IBM Plex Sans"; src: url("../src/Evrakci.App/Assets/Fonts/IBMPlexSans-SemiBold.ttf"); font-weight: 600; }
+  @font-face { font-family: "IBM Plex Serif"; src: url("../src/Evrakci.App/Assets/Fonts/IBMPlexSerif-SemiBold.ttf"); font-weight: 600; }
+
+  :root {
+    --mor: #4B2E83; --mor-koyu: #6A4FB3; --lila: #B9A7EC;
+    --murekkep: #1A1A22; --kursun: #5E6270; --satir: #B9B6C6;
+    --masa: #EEEEF2; --kagit: #FFFFFF; --cizgi: #DCDBE3; --gece: #16131D;
+    --sans: "IBM Plex Sans", "Segoe UI", sans-serif;
+    --serif: "IBM Plex Serif", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--masa); color: var(--murekkep); font: 17px/1.6 var(--sans); }
+  .sayfa {
+    max-width: 1000px; margin: 32px auto; background: var(--kagit); border: 1px solid var(--cizgi); border-radius: 8px;
+    padding: 56px 56px 72px 88px; position: relative;
+  }
+  /* The petition sheet's double margin rule, the brand's one recurring device. */
+  .sayfa::before, .sayfa::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: var(--mor); opacity: .55; }
+  .sayfa::before { left: 44px; } .sayfa::after { left: 51px; }
+  header img { width: min(440px, 100%); height: auto; display: block; margin-left: -12px; }
+  h1, h2 { font-family: var(--serif); font-weight: 600; line-height: 1.2; }
+  h1 { font-size: 40px; margin: 40px 0 8px; }
+  h2 { font-size: 28px; margin: 64px 0 12px; }
+  h3 { font-size: 18px; font-weight: 600; margin: 28px 0 6px; }
+  p, li { max-width: 68ch; }
+  .giris { color: var(--kursun); font-size: 19px; }
+  .ikili { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 20px; }
+  .zemin { border: 1px solid var(--cizgi); border-radius: 6px; padding: 28px; display: flex; align-items: center; justify-content: center; }
+  .zemin img { max-width: 100%; height: auto; }
+  .zemin.koyu { background: var(--gece); border-color: var(--gece); }
+  .boylar { display: flex; align-items: flex-end; gap: 28px; flex-wrap: wrap; }
+  .boylar figure { margin: 0; text-align: center; color: var(--kursun); font-size: 14px; }
+  .boylar img { display: block; margin: 0 auto 8px; image-rendering: pixelated; }
+  table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+  th, td { text-align: left; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--cizgi); vertical-align: middle; }
+  th { color: var(--kursun); font-weight: 400; font-size: 15px; }
+  .renk { width: 44px; height: 44px; border-radius: 4px; border: 1px solid rgba(0,0,0,.08); }
+  code { font-family: var(--sans); font-size: 15px; color: var(--kursun); }
+  .serif { font-family: var(--serif); font-weight: 600; }
+  .yap, .yapma { padding: 4px 0 4px 20px; border-left: 3px solid var(--mor); }
+  .yapma { border-left-color: var(--satir); }
+  .yap h3, .yapma h3 { margin-top: 0; }
+  ul { padding-left: 20px; } li { margin: 4px 0; }
+  .dugme { display: inline-block; font: 600 16px var(--sans); padding: 10px 20px; border-radius: 6px; margin: 6px 8px 6px 0; }
+  .dugme.ana { background: var(--mor); color: #fff; }
+  .dugme.ikincil { background: #fff; color: var(--murekkep); border: 1px solid var(--cizgi); }
+  .tanitim { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 20px; color: var(--murekkep); }
+  @media (max-width: 640px) {
+    .sayfa { margin: 0; border-radius: 0; border: 0; padding: 32px 16px 48px 40px; }
+    .sayfa::before { left: 16px; } .sayfa::after { left: 22px; }
+    h1 { font-size: 30px; } h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <img src="logo-yatay-acik.svg" alt="Evrakçı logosu">
+    <h1>Marka rehberi</h1>
+    <p class="giris">Evrakçı, arabulucuların bir dosyanın bütün evrakını tek formdan hazırladığı masaüstü uygulamasıdır. Marka resmî kâğıdın diliyle konuşur: düzenli, ağırbaşlı, güvenilir. Bu sayfa logonun, renklerin ve yazı tiplerinin nasıl kullanılacağını anlatır.</p>
+  </header>
+
+  <section>
+    <h2>Logo</h2>
+    <p>İşaret bir dilekçe kâğıdıdır: katlanmış köşe, solda çift kenar boşluğu çizgisi, yazı satırları ve altta mühür. Her arabuluculuk dosyasının sonunda imzalanıp mühürlenen bir kâğıt vardır; Evrakçı o kâğıdı hazırlar. Yanındaki ad IBM Plex Serif ile yazılır, altındaki “Arabuluculuk evrakı” eğik yazıyla.</p>
+    <div class="ikili">
+      <div class="zemin"><img src="logo-yatay-acik.svg" alt="Açık zeminde yatay logo"></div>
+      <div class="zemin koyu"><img src="logo-yatay-koyu.svg" alt="Koyu zeminde yatay logo"></div>
+    </div>
+
+    <h3>Küçük boyutlar</h3>
+    <p>32 piksel ve altında ayrıntılar kaybolur. Bu boyutlarda <code>logo-isaret-kucuk.svg</code> kullanılır: daha kalın çizgiler, tek kenar çizgisi, iki satır ve iç halkası olmayan bir mühür. Uygulama simgesi <code>evrakci.ico</code> her boyutu doğru çizimle içerir.</p>
+    <div class="boylar">
+      <figure><img src="logo-isaret.svg" width="96" height="124" alt="İşaret, 96 piksel">96 px</figure>
+      <figure><img src="ikon/ikon-48.png" width="48" height="48" alt="İkon, 48 piksel">48 px</figure>
+      <figure><img src="ikon/ikon-32.png" width="32" height="32" alt="İkon, 32 piksel">32 px</figure>
+      <figure><img src="ikon/ikon-16.png" width="16" height="16" alt="İkon, 16 piksel">16 px</figure>
+    </div>
+
+    <div class="ikili" style="margin-top:32px">
+      <div class="yap"><h3>Yapın</h3><ul><li>Logoyu dosyalardaki hâliyle kullanın.</li><li>Çevresinde en az kâğıdın yarı genişliği kadar boşluk bırakın.</li><li>Adı her zaman <b>Evrakçı</b> diye yazın: büyük E, Türkçe ç ve ı ile.</li></ul></div>
+      <div class="yapma"><h3>Yapmayın</h3><ul><li>Renkleri değiştirmeyin; gölge, parlama ya da renk geçişi eklemeyin.</li><li>Logoyu esnetmeyin, döndürmeyin, kâğıdı başka bir biçime sokmayın.</li><li>“Evrakci”, “EVRAKÇI” ya da “Evrak-çı” yazmayın. (Dosya adlarındaki <code>Evrakci</code> yalnızca teknik bir zorunluluktur.)</li></ul></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Renkler</h2>
+    <p>Mühür Moru tek vurgu rengidir: logo çizgileri, ana düğme, seçili sekme, adım işaretleri. Geri kalan her şey mürekkep ve kâğıt tonlarıdır. Metin ile zemin arasındaki karşıtlık en az 4.5:1'dir; yaşlı kullanıcılar da rahat okur.</p>
+    <table>
+      <tr><th></th><th>Ad</th><th>Değer</th><th>Kullanım</th></tr>
+      <tr><td><div class="renk" style="background:#4B2E83"></div></td><td><b>Mühür Moru</b></td><td><code>#4B2E83</code></td><td>Vurgu, ana düğme, logo. Üstündeki yazı beyazdır (10.4:1).</td></tr>
+      <tr><td><div class="renk" style="background:#6A4FB3"></div></td><td><b>Gece Moru</b></td><td><code>#6A4FB3</code></td><td>Koyu temada düğme dolgusu (beyaz yazıyla 6.2:1).</td></tr>
+      <tr><td><div class="renk" style="background:#B9A7EC"></div></td><td><b>Lila</b></td><td><code>#B9A7EC</code></td><td>Koyu temada vurgulu yazı ve logo çizgileri.</td></tr>
+      <tr><td><div class="renk" style="background:#1A1A22"></div></td><td><b>Mürekkep</b></td><td><code>#1A1A22</code></td><td>Gövde metni, logodaki ad ve kâğıt kenarı.</td></tr>
+      <tr><td><div class="renk" style="background:#5E6270"></div></td><td><b>Kurşun</b></td><td><code>#5E6270</code></td><td>Açıklamalar, ikincil metin.</td></tr>
+      <tr><td><div class="renk" style="background:#EEEEF2"></div></td><td><b>Masa</b></td><td><code>#EEEEF2</code></td><td>Pencere zemini; üstünde beyaz kâğıt (içerik alanı) durur.</td></tr>
+      <tr><td><div class="renk" style="background:#16131D"></div></td><td><b>Gece</b></td><td><code>#16131D</code></td><td>Koyu tema zemini.</td></tr>
+    </table>
+    <p style="margin-top:16px">Belge önizlemesindeki sayfalar her temada beyaz kalır ve Times New Roman ile çizilir; mahkeme ve UYAP alışkanlığı budur.</p>
+  </section>
+
+  <section>
+    <h2>Yazı tipleri</h2>
+    <p>İki aileden oluşur ve ikisi de uygulamanın içine gömülüdür (SIL Open Font License; ticari kullanım serbest). Başlıklar dilekçe başlığı gibi tırnaklı, arayüz metni sade ve okunaklıdır.</p>
+    <table>
+      <tr><th>Kullanım</th><th>Örnek</th><th>Yazı tipi ve boyut</th></tr>
+      <tr><td>Ekran başlığı</td><td><span class="serif" style="font-size:32px;color:var(--mor)">Dosyanın türünü seçin</span></td><td>IBM Plex Serif, yarı kalın, 32</td></tr>
+      <tr><td>Bölüm başlığı</td><td><span class="serif" style="font-size:26px">Tutanak bilgileri</span></td><td>IBM Plex Serif, yarı kalın, 26</td></tr>
+      <tr><td>Gövde</td><td>Bu dosyada hangi tutanaklar hazırlanacak?</td><td>IBM Plex Sans, normal, 15–16</td></tr>
+      <tr><td>Açıklama</td><td style="color:var(--kursun)">Boş bırakılırsa “Başvuru tarihi” ile aynı olur.</td><td>IBM Plex Sans, normal, 14–15, Kurşun</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Arayüz ilkeleri</h2>
+    <h3>Kâğıt ve masa</h3>
+    <p>Pencere bir masadır, içerik alanı onun üstündeki beyaz kâğıttır. Kâğıdın solunda logodaki çift kenar çizgisi durur; markanın arayüzde tekrar eden tek süsü budur. Başka çerçeve, gölge ya da renk geçişi eklenmez.</p>
+    <h3>Okunur</h3>
+    <p>En küçük yazı 13 punto, form etiketleri 16 punto. Soluk gri yazı kullanılmaz.</p>
+    <h3>Yazılı düğmeler, büyük hedefler</h3>
+    <p>Önemli düğmelerde simgenin yanında yazı vardır (“Boş bırak”, “Hatırla”). Düğme ve kutular en az 40 piksel yüksekliktedir. Bir ekranda tek bir mor (ana) düğme bulunur.</p>
+    <p><span class="dugme ana">Belgeleri üret</span><span class="dugme ikincil">Geri</span></p>
+    <h3>Adım adım</h3>
+    <p>İş dört adımda ilerler; kullanıcı her an nerede olduğunu ve sırada ne olduğunu görür.</p>
+  </section>
+
+  <section>
+    <h2>Dil ve üslup</h2>
+    <div class="ikili">
+      <div class="yap"><h3>Böyle yazın</h3><ul><li>Kısa, düz cümleler: “Tutanakları işaretleyin.”</li><li>“Siz” diye hitap edin.</li><li>Hukuki terimleri doğru kullanın: tutanak, son tutanak, anlaşma belgesi.</li></ul></div>
+      <div class="yapma"><h3>Kaçının</h3><ul><li>Teknik terimler: “şablon değişkeni”, “dosya formatı” yerine “bilgi”, “Word / UYAP”.</li><li>Abartılı vaatler; hukuki doğruluk her zaman önce gelir.</li></ul></div>
+    </div>
+    <h3>Kısa tanıtım</h3>
+    <p class="tanitim">Evrakçı, arabuluculuk dosyanızın davet mektubundan son tutanağına kadar bütün evrakını tek formdan, Word ve UYAP biçiminde hazırlar. İnternet gerektirmez; bilgileriniz bilgisayarınızdan çıkmaz.</p>
+  </section>
+</main>
+</body>
+</html>

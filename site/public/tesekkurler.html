@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesajınız alındı · Evrakçı</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/yazi/yazi.css">
+<style>
+:root { --mor: #4B2E83; --mor-yazi: #4B2E83; --murekkep: #1A1A22; --kursun: #5E6270; --masa: #EEEEF2; --kagit: #FFFFFF; --cizgi: #DCDBE3; --kenar: rgba(75,46,131,.55); color-scheme: light dark; }
+@media (prefers-color-scheme: dark) { :root { --mor: #6A4FB3; --mor-yazi: #B9A7EC; --murekkep: #ECEAF2; --kursun: #ABA8B8; --masa: #0E0C13; --kagit: #16131D; --cizgi: #2E2939; --kenar: rgba(185,167,236,.5); } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--masa); color: var(--murekkep); font: 17px/1.65 "IBM Plex Sans", "Segoe UI", sans-serif; }
+main { max-width: 760px; margin: 40px auto; background: var(--kagit); border: 1px solid var(--cizgi); border-radius: 8px; padding: 48px 48px 56px 96px; position: relative; }
+main::before, main::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: var(--kenar); }
+main::before { left: 44px; } main::after { left: 51px; }
+img { width: 180px; height: auto; display: block; margin: -10px 0 24px -8px; }
+h1 { font: 600 34px/1.2 "IBM Plex Serif", Georgia, serif; margin: 0 0 14px; }
+p { color: var(--kursun); max-width: 60ch; }
+a { color: var(--mor-yazi); }
+a.dugme { display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 6px; background: var(--mor); color: #fff; text-decoration: none; font-weight: 600; }
+:focus-visible { outline: 3px solid var(--mor-yazi); outline-offset: 3px; }
+@media (max-width: 640px) { main { margin: 0; border: 0; border-radius: 0; padding: 32px 16px 48px 40px; min-height: 100vh; } main::before { left: 16px; } main::after { left: 22px; } }
+</style>
+</head>
+<body>
+<main>
+  <picture>
+    <source srcset="gorsel/logo-yatay-koyu.svg" media="(prefers-color-scheme: dark)">
+    <img src="gorsel/logo-yatay-acik.svg" alt="Evrakçı · Arabuluculuk evrakı" width="661" height="232">
+  </picture>
+  <h1>Mesajınız alındı.</h1>
+  <p>En kısa sürede e-postayla dönüş yapacağız. Satın alma talebi gönderdiyseniz ödeme bilgilerini e-postayla iletiyoruz; ödemeden sonra lisans numaranız e-postanıza gelir.</p>
+  <p>Bu arada uygulamayı 14 gün ücretsiz kullanabilirsiniz.</p>
+  <a class="dugme" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+  <p style="margin-top:28px"><a href="./">Ana sayfaya dön</a></p>
+</main>
+</body>
+</html>

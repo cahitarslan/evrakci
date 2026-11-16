@@ -1,0 +1,27 @@
+# Derleme çıktıları
+bin/
+obj/
+dist/
+publish/
+Releases/
+*.user
+.vs/
+.vscode/
+.idea/
+
+# Uygulamanın geçici dosyaları ve Word kilit dosyaları
+*.evrakci-tmp
+~$*
+
+# Site: bağımlılıklar, Netlify durumu ve büyük güncelleme paketleri (tools/yayinla.ps1 doldurur)
+node_modules/
+.netlify/
+site/public/guncelleme/
+
+# Yerel araç ayarları
+.claude/
+
+# Gerçek dosyalar ve kişisel veriler asla depoya girmez
+*.evrak
+*.pem
+Evrakci-Gizli/

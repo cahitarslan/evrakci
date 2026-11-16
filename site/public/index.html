@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evrakçı · Arabuluculuk evrakı tek formdan, Word ve UYAP biçiminde</title>
+<meta name="description" content="Evrakçı, arabuluculuk dosyanızın davet mektubundan son tutanağına kadar bütün evrakını tek formdan Word (.docx) ve UYAP (.udf) biçiminde hazırlar. Türkçe ekler, yazıyla tutarlar, TCKN ve IBAN kontrolü. 14 gün ücretsiz, kart gerekmez.">
+<link rel="canonical" href="https://evrakci.netlify.app/">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16131D" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Evrakçı">
+<meta property="og:url" content="https://evrakci.netlify.app/">
+<meta property="og:title" content="Evrakçı · Arabuluculuk dosyanızın bütün evrakı, tek formdan">
+<meta property="og:description" content="Davet mektubundan son tutanağa kadar bütün belgeler Word ve UYAP (.udf) biçiminde. Bilgileriniz bilgisayarınızdan çıkmaz. 14 gün ücretsiz.">
+<meta property="og:image" content="https://evrakci.netlify.app/gorsel/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Evrakçı logosu ve önizleme ekranında sarı işaretli değerlerle bir anlaşma belgesi">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Evrakçı · Arabuluculuk evrakı tek formdan">
+<meta name="twitter:description" content="Bütün tutanaklar tek formdan, Word ve UYAP biçiminde. 14 gün ücretsiz.">
+<meta name="twitter:image" content="https://evrakci.netlify.app/gorsel/og.png">
+<link rel="preload" href="/yazi/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/yazi/plex-serif-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/yazi/yazi.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Evrakçı",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Windows 10, Windows 11",
+  "inLanguage": "tr",
+  "url": "https://evrakci.netlify.app/",
+  "downloadUrl": "https://evrakci.netlify.app/guncelleme/Evrakci-win-Setup.exe",
+  "image": "https://evrakci.netlify.app/gorsel/og.png",
+  "description": "Arabulucuların bir dosyanın bütün evrakını tek formdan Word (.docx) ve UYAP (.udf) biçiminde hazırladığı Windows uygulaması.",
+  "offers": [
+    {"@type": "Offer", "name": "Aylık", "price": "299", "priceCurrency": "TRY"},
+    {"@type": "Offer", "name": "Yıllık", "price": "2990", "priceCurrency": "TRY"}
+  ]
+}
+</script>
+<style>
+:root {
+  --mor: #4B2E83; --mor-dolgu: #4B2E83; --mor-yazi: #4B2E83; --lila: #B9A7EC;
+  --murekkep: #1A1A22; --kursun: #5E6270; --masa: #EEEEF2; --kagit: #FFFFFF;
+  --cizgi: #DCDBE3; --kenar: rgba(75, 46, 131, .55); --yumusak: #F6F5F9;
+  --deger: #FFF1C2; --ek: #D9E8FF; --hata: #B3261E;
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --sans: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --olcu: 1200px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mor-dolgu: #6A4FB3; --mor-yazi: #B9A7EC;
+    --murekkep: #ECEAF2; --kursun: #ABA8B8; --masa: #0E0C13; --kagit: #16131D;
+    --cizgi: #2E2939; --kenar: rgba(185, 167, 236, .5); --yumusak: #1E1A27;
+    --deger: #4A3F17; --ek: #1D3354; --hata: #FF8A80;
+  }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--masa); color: var(--murekkep); font: 17px/1.65 var(--sans); }
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: var(--mor-yazi); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--mor-yazi); outline-offset: 3px; border-radius: 4px; }
+.gizli { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.atla { position: absolute; left: 16px; top: -60px; background: var(--kagit); padding: 10px 16px; z-index: 20; border: 1px solid var(--cizgi); }
+.atla:focus { top: 12px; }
+
+/* The page is one petition sheet lying on the desk; its double margin rule runs the full length. */
+.kagit { max-width: var(--olcu); margin: 0 auto; background: var(--kagit); position: relative; min-height: 100vh;
+  border-left: 1px solid var(--cizgi); border-right: 1px solid var(--cizgi); }
+.kagit::before, .kagit::after { content: ""; position: absolute; top: 0; bottom: 0; width: 2px; background: var(--kenar); pointer-events: none; }
+.kagit::before { left: 44px; } .kagit::after { left: 51px; }
+.ic { padding-left: 96px; padding-right: 64px; }
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.18; margin: 0; letter-spacing: -.005em; }
+h1 { font-size: clamp(36px, 5.2vw, 64px); line-height: 1.08; }
+h2 { font-size: clamp(28px, 3vw, 38px); max-width: 24ch; }
+h3 { font-size: 21px; }
+p { margin: 0 0 1em; max-width: 64ch; }
+.giris { font-size: 19px; color: var(--kursun); max-width: 58ch; }
+.kucuk { font-size: 15px; color: var(--kursun); }
+
+/* Header */
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 20px; padding-bottom: 12px; }
+.logo { display: block; width: 190px; margin: -10px 0 -10px -8px; }
+.logo img { width: 100%; height: auto; }
+.menu { display: flex; gap: 22px; align-items: center; font-size: 15px; }
+.menu a { color: var(--murekkep); text-decoration: none; }
+.menu a:hover { color: var(--mor-yazi); text-decoration: underline; }
+@media (max-width: 960px) { .menu .ikincil { display: none; } }
+
+.dugme { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 22px;
+  border-radius: 6px; font: 600 16px/1.2 var(--sans); text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+.dugme.ana { background: var(--mor-dolgu); color: #fff; }
+.dugme.ana:hover { background: #3C2469; text-decoration: none; }
+@media (prefers-color-scheme: dark) { .dugme.ana:hover { background: #7C62C4; } }
+.dugme.ikinci { background: transparent; color: var(--murekkep); border-color: var(--cizgi); }
+.dugme.ikinci:hover { border-color: var(--mor-yazi); color: var(--mor-yazi); }
+.dugme.kisa { min-height: 40px; padding: 8px 16px; font-size: 15px; }
+
+/* Hero */
+.kahraman { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: 56px; align-items: end; padding-top: 56px; padding-bottom: 72px; }
+.kahraman h1 { max-width: 17ch; }
+.kahraman .yan { padding-bottom: 6px; }
+.kahraman figure { grid-column: 1 / -1; margin-top: 48px; }
+.kahraman h1 { margin-bottom: 0; }
+.eylem { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 14px; }
+.guvence { font-size: 15px; color: var(--kursun); margin: 0; }
+.pencere { border: 1px solid var(--cizgi); border-radius: 8px; overflow: hidden; background: var(--yumusak); box-shadow: 0 18px 50px -24px rgba(26, 26, 34, .35); position: relative; }
+.pencere video, .pencere img { width: 100%; aspect-ratio: 1280 / 680; object-fit: cover; }
+.oynat { position: absolute; right: 10px; bottom: 10px; min-height: 36px; padding: 6px 12px; font: 500 14px var(--sans);
+  background: rgba(26, 26, 34, .78); color: #fff; border: 0; border-radius: 4px; cursor: pointer; }
+.altyazi { font-size: 14px; color: var(--kursun); margin-top: 10px; }
+.olgular { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi); margin: 0; }
+.olgular div { padding: 18px 18px 18px 0; }
+.olgular dt { font-family: var(--serif); font-weight: 600; font-size: 20px; }
+.olgular dd { margin: 2px 0 0; font-size: 15px; color: var(--kursun); }
+
+section { padding-top: 96px; padding-bottom: 8px; scroll-margin-top: 16px; }
+.baslik { margin-bottom: 28px; }
+.baslik p { margin-top: 14px; }
+
+/* Problem: a correction sheet */
+.duzeltme { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.liste { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--cizgi); }
+.liste li { padding: 16px 0; border-bottom: 1px solid var(--cizgi); }
+.liste b { display: block; font-weight: 600; }
+.ornek { font-family: "Times New Roman", var(--serif); font-size: 19px; background: #fff; color: #1A1A22; border: 1px solid var(--cizgi); padding: 26px 28px; border-radius: 4px; line-height: 1.9; }
+.ornek p { max-width: none; margin: 0 0 6px; }
+.yanlis { text-decoration: line-through; text-decoration-color: #B3261E; text-decoration-thickness: 2px; color: #7A2A2A; }
+.dogru { background: #FFF1C2; padding: 1px 2px; }
+.dogru .e { background: #D9E8FF; }
+.ornek .not { font: 14px/1.5 var(--sans); color: #5E6270; margin-top: 14px; }
+
+/* Calculator */
+.hesap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 0; border: 1px solid var(--cizgi); border-radius: 8px; overflow: hidden; }
+.hesap form { padding: 28px; background: var(--yumusak); display: grid; gap: 20px; align-content: start; }
+.alan label { display: block; font-weight: 500; margin-bottom: 6px; }
+.alan .ipucu { display: block; font-size: 14px; color: var(--kursun); margin-top: 4px; }
+.sayi { display: flex; align-items: center; gap: 10px; }
+input[type=number], input[type=text], input[type=email], input[type=tel], select, textarea {
+  font: 17px var(--sans); color: var(--murekkep); background: var(--kagit); border: 1px solid #8C8A99; border-radius: 6px; padding: 10px 12px; min-height: 46px; width: 100%; }
+.sayi input { width: 120px; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--mor-yazi); outline-offset: 1px; }
+.sonuc { padding: 28px 32px; }
+.sonuc .buyuk { font-family: var(--serif); font-weight: 600; font-size: clamp(34px, 4vw, 48px); line-height: 1.1; color: var(--mor-yazi); margin: 6px 0 4px; }
+.cubuk { display: grid; gap: 10px; margin: 22px 0; }
+.cubuk div { display: grid; grid-template-columns: 120px minmax(0, 1fr) 90px; gap: 12px; align-items: center; font-size: 15px; }
+.cubuk span.bar { height: 14px; border-radius: 3px; background: var(--cizgi); position: relative; overflow: hidden; }
+.cubuk span.bar i { position: absolute; inset: 0 auto 0 0; background: var(--kursun); border-radius: 3px; }
+.cubuk .evrakci i { background: var(--mor-dolgu); }
+.cubuk output { text-align: right; font-variant-numeric: tabular-nums; }
+.tablo { width: 100%; border-collapse: collapse; font-size: 15px; font-variant-numeric: tabular-nums; }
+.tablo th, .tablo td { text-align: left; padding: 9px 0; border-bottom: 1px solid var(--cizgi); }
+.tablo td:last-child, .tablo th:last-child { text-align: right; }
+.tablo th { font-weight: 500; color: var(--kursun); }
+
+/* Steps */
+.adimlar { list-style: none; margin: 0; padding: 0; counter-reset: adim; }
+.adim { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 48px; align-items: center; padding: 36px 0; border-top: 1px solid var(--cizgi); counter-increment: adim; }
+.adim h3::before { content: counter(adim); display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--mor-dolgu); color: #fff; font: 600 16px var(--sans); margin-right: 12px; vertical-align: 3px; }
+.adim p { margin-top: 12px; }
+figure { margin: 0; }
+.ekran { border: 1px solid var(--cizgi); border-radius: 6px; overflow: hidden; background: var(--yumusak); }
+figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
+
+/* Video */
+.oynatici { border: 1px solid var(--cizgi); border-radius: 8px; overflow: hidden; background: #1A1A22; }
+.oynatici video { width: 100%; aspect-ratio: 16 / 9; }
+
+/* Features */
+.ozellik { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; }
+.ozellik div { padding: 22px 0; border-top: 1px solid var(--cizgi); }
+.ozellik h3 { font-size: 19px; margin-bottom: 6px; }
+.ozellik p { font-size: 16px; color: var(--kursun); margin: 0; }
+.iki { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; margin-top: 40px; }
+
+/* Privacy */
+.gizlilik { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+.kutu { border: 1px solid var(--cizgi); border-radius: 8px; padding: 24px 26px; }
+.kutu h3 { font-size: 19px; margin-bottom: 10px; }
+.kutu ul { margin: 0; padding-left: 20px; }
+.kutu li { margin: 6px 0; }
+
+/* Pricing */
+.fiyatlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.plan { border: 1px solid var(--cizgi); border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 14px; position: relative; }
+.plan.one { border: 2px solid var(--mor-yazi); }
+.plan h3 { font-size: 22px; }
+.tutar { font-family: var(--serif); font-weight: 600; font-size: 40px; line-height: 1; }
+.tutar small { font: 400 16px var(--sans); color: var(--kursun); }
+.plan ul { margin: 0; padding-left: 20px; font-size: 16px; }
+.plan li { margin: 5px 0; }
+.plan .dugme { margin-top: auto; }
+/* The seal: the brand's mühür ring stamps the recommended plan. */
+.muhur { position: absolute; top: -22px; right: 20px; width: 92px; height: 92px; border-radius: 50%; border: 3px solid var(--mor-yazi);
+  display: grid; place-items: center; text-align: center; font: 600 13px/1.2 var(--sans); color: var(--mor-yazi); background: var(--kagit); transform: rotate(-8deg); }
+.muhur::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px solid var(--mor-yazi); }
+
+/* FAQ */
+.sss details { border-top: 1px solid var(--cizgi); }
+.sss details:last-child { border-bottom: 1px solid var(--cizgi); }
+.sss summary { cursor: pointer; padding: 18px 40px 18px 0; font-weight: 600; font-size: 18px; list-style: none; position: relative; }
+.sss summary::-webkit-details-marker { display: none; }
+.sss summary::after { content: "+"; position: absolute; right: 6px; top: 14px; font: 400 26px var(--sans); color: var(--mor-yazi); }
+.sss details[open] summary::after { content: "−"; }
+.sss details > div { padding: 0 0 18px; }
+
+/* Contact */
+.iletisim { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 48px; }
+.form { display: grid; gap: 18px; }
+.form .cift { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.form label { display: block; font-weight: 500; margin-bottom: 6px; }
+.form textarea { min-height: 130px; resize: vertical; }
+.form .bal { display: none; }
+
+.son { margin-top: 110px; background: var(--yumusak); border-top: 1px solid var(--cizgi); padding-top: 64px; padding-bottom: 64px; }
+.son h2 { max-width: 22ch; }
+.alt { padding-top: 36px; padding-bottom: 40px; font-size: 14px; color: var(--kursun); border-top: 1px solid var(--cizgi); display: grid; gap: 10px; }
+.alt p { max-width: 90ch; margin: 0; }
+
+@media (max-width: 960px) {
+  .kahraman, .duzeltme, .hesap, .adim, .gizlilik, .iletisim, .iki { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .fiyatlar { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .ozellik { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .olgular { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .adim figure { order: 2; }
+  section { padding-top: 72px; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .kagit { border: 0; }
+  .kagit::before { left: 16px; } .kagit::after { left: 22px; }
+  .ic { padding-left: 38px; padding-right: 16px; }
+  .logo { width: 150px; }
+  .menu { gap: 12px; }
+  .menu .dugme { padding: 8px 12px; font-size: 14px; }
+  .kahraman { padding-top: 28px; }
+  .ozellik, .form .cift { grid-template-columns: minmax(0, 1fr); }
+  .olgular div { padding-right: 8px; }
+  .hesap form, .sonuc { padding: 20px 18px; }
+  .cubuk div { grid-template-columns: 82px minmax(0, 1fr) 70px; gap: 8px; }
+  .ornek { padding: 18px; font-size: 17px; }
+  .plan { padding: 24px 20px; }
+  .eylem .dugme { width: 100%; }
+}
+@media (max-width: 380px) { .menu .dugme { display: none; } }
+</style>
+</head>
+<body>
+<a class="atla" href="#icerik">İçeriğe geç</a>
+<div class="kagit">
+<header class="ust ic">
+  <a class="logo" href="./" aria-label="Evrakçı ana sayfa">
+    <picture>
+      <source srcset="gorsel/logo-yatay-koyu.svg" media="(prefers-color-scheme: dark)">
+      <img src="gorsel/logo-yatay-acik.svg" alt="Evrakçı · Arabuluculuk evrakı" width="661" height="232">
+    </picture>
+  </a>
+  <nav class="menu" aria-label="Sayfa içi">
+    <a class="ikincil" href="#nasil">Nasıl çalışır</a>
+    <a class="ikincil" href="#gizlilik">Gizlilik</a>
+    <a class="ikincil" href="#fiyat">Fiyat</a>
+    <a class="ikincil" href="#sss">Sorular</a>
+    <a class="dugme ana kisa" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+  </nav>
+</header>
+
+<main id="icerik">
+<div class="kahraman ic">
+  <h1>Arabuluculuk dosyanızın bütün evrakı, tek formdan.</h1>
+  <div class="yan">
+    <p class="giris">Tarafları, tutarları, tarihleri bir kez yazarsınız. Evrakçı davet mektubundan son tutanağa kadar seçtiğiniz bütün belgeleri doldurur; Türkçe ekleri doğru çeker, tutarları yazıyla yazar, Word ve UYAP (.udf) biçiminde kaydeder.</p>
+    <div class="eylem">
+      <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+      <a class="dugme ikinci" href="#video">Tanıtım videosunu izle (1,5 dk)</a>
+    </div>
+    <p class="guvence">Kart bilgisi istenmez. Deneme 14 gün ya da 3 dosya sürer. Windows 10 ve 11 için, kurulum dosyası 71 MB.</p>
+  </div>
+  <figure>
+    <div class="pencere">
+      <video id="dongu" muted loop playsinline preload="metadata" poster="medya/dongu-poster.jpg" aria-label="Evrakçı'nın kısa ekran kaydı: Kira dosyası seçiliyor, form dolduruluyor, önizleme ve üretilen belgeler görünüyor">
+        <source src="medya/dongu.mp4" type="video/mp4">
+      </video>
+      <button class="oynat" id="donguDugme" type="button" hidden>Durdur</button>
+    </div>
+    <figcaption class="altyazi">Gerçek ekran kaydı, hızlandırılmış. Ekrandaki bütün kişi ve numaralar örnektir.</figcaption>
+  </figure>
+</div>
+
+<dl class="olgular ic">
+  <div><dt>9 arabuluculuk türü</dt><dd>İşçi–işverenden kira ve ticariye hazır setler</dd></div>
+  <div><dt>Her türde 7 belge</dt><dd>Davet, bilgilendirme, anlaşma, son tutanaklar</dd></div>
+  <div><dt>Word ve UYAP</dt><dd>.docx ve .udf, ikisi birden tek tıkla</dd></div>
+  <div><dt>İnternetsiz üretim</dt><dd>Bilgiler bilgisayarınızdan çıkmaz</dd></div>
+</dl>
+
+<section class="ic" id="sorun" aria-labelledby="sorun-b">
+  <div class="duzeltme">
+    <div>
+      <div class="baslik">
+        <h2 id="sorun-b">Aynı bilgileri yedi belgeye ayrı ayrı yazmak hem zaman alır hem hata bırakır.</h2>
+        <p class="giris">Bir dosyanın evrakını elle hazırlamak genellikle 30 ile 45 dakika sürüyor. O sürenin önemli bir kısmı yazmaya değil, aynı bilginin her belgede doğru geçtiğini kontrol etmeye gidiyor.</p>
+      </div>
+      <ul class="liste">
+        <li><b>Eski dosyadan kopyalanan belge</b>Önceki müvekkilin adı bir paragrafta kalırsa yanlış kişiye ait bilgi başka bir dosyaya girmiş olur.</li>
+        <li><b>Ek uyumu</b>“Ayşe Demir’ın”, “Kaya’a” gibi hatalar her ad değişikliğinde yeniden kontrol ister.</li>
+        <li><b>Yazıyla tutar</b>64.000 TL’nin yazıyla karşılığı her belgede aynı olmalı; taksitlerin toplamı anlaşma tutarını tutmalı.</li>
+        <li><b>İki biçim</b>Word’de hazırlanan belgenin UYAP için ayrıca düzenlenmesi gerekir.</li>
+      </ul>
+    </div>
+    <figure>
+      <div class="ornek" aria-label="Örnek düzeltme">
+        <p>Ödemeler <span class="yanlis">Ayşe Demir’ın</span> <span class="dogru">AYŞE DEMİR<span class="e">’in</span></span> hesabına yapılacaktır.</p>
+        <p>Kira bedeli <span class="dogru">64.000,00 TL</span> (<span class="yanlis">Altmışdört bin lira</span> <span class="dogru">Altmış Dört Bin Türk Lirası</span>)</p>
+        <p>Arabulucu <span class="dogru">ZEYNEP AKSOY<span class="e">’un</span></span> IBAN numaralı hesabına</p>
+        <p class="not">Evrakçı’nın önizlemesinde girdiğiniz değerler sarı, kendiliğinden uyarlanan ekler mavi görünür. Örnekteki adlar uydurmadır.</p>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="ic" id="hesap" aria-labelledby="hesap-b">
+  <div class="baslik">
+    <h2 id="hesap-b">Ayda kaç saatiniz evrak hazırlamaya gidiyor?</h2>
+    <p class="giris">Kendi rakamlarınızı girin. Sonuçlar tahmindir; varsayımlar aşağıda yazıyor.</p>
+  </div>
+  <div class="hesap">
+    <form id="hesapForm" onsubmit="return false">
+      <div class="alan">
+        <label for="dosya">Ayda kaç dosya hazırlıyorsunuz?</label>
+        <div class="sayi"><input id="dosya" type="number" inputmode="numeric" min="1" max="500" step="1" value="15"><span>dosya</span></div>
+      </div>
+      <div class="alan">
+        <label for="elle">Bir dosyanın evrakı elle kaç dakika sürüyor?</label>
+        <div class="sayi"><input id="elle" type="number" inputmode="numeric" min="1" max="300" step="1" value="40"><span>dakika</span></div>
+        <span class="ipucu">Varsayılan 40 dakika: elle hazırlıkta tipik aralık olan 30–45 dakikanın ortası.</span>
+      </div>
+      <div class="alan">
+        <label for="evrakci">Evrakçı ile kaç dakika?</label>
+        <div class="sayi"><input id="evrakci" type="number" inputmode="numeric" min="1" max="300" step="1" value="10"><span>dakika</span></div>
+        <span class="ipucu">Kendi ölçümümüz: dört belgelik bir Kira dosyası, sıfırdan ve dakikada yaklaşık 240 harf yazarak 7,5 dakikada üretildi. Okuma ve kontrol payıyla 10 dakika aldık.</span>
+      </div>
+      <div class="alan">
+        <label for="ucret">Bir saatinizin değeri (isteğe bağlı)</label>
+        <div class="sayi"><input id="ucret" type="number" inputmode="numeric" min="0" max="100000" step="50" value="500"><span>TL</span></div>
+        <span class="ipucu">Bu rakamı siz belirleyin; hesap yalnızca karşılaştırma içindir.</span>
+      </div>
+    </form>
+    <div class="sonuc" aria-live="polite">
+      <p class="kucuk" style="margin:0">Yılda geri kazanacağınız süre, tahmini</p>
+      <p class="buyuk"><output id="yilSaat">90 saat</output></p>
+      <p class="kucuk" id="gunKarsilik">Yaklaşık 11 iş günü (8 saatlik).</p>
+      <div class="cubuk" aria-hidden="true">
+        <div><span>Elle, ayda</span><span class="bar"><i id="barElle" style="width:100%"></i></span><output id="ayElle">10 sa</output></div>
+        <div class="evrakci"><span>Evrakçı ile</span><span class="bar"><i id="barEvrakci" style="width:25%"></i></span><output id="ayEvrakci">2,5 sa</output></div>
+      </div>
+      <table class="tablo">
+        <caption class="gizli">Aylık ve yıllık karşılaştırma</caption>
+        <thead><tr><th scope="col"></th><th scope="col">Ayda</th><th scope="col">Yılda</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Kazanılan süre</th><td id="tAySaat">7,5 saat</td><td id="tYilSaat">90 saat</td></tr>
+          <tr><th scope="row">O sürenin değeri</th><td id="tAyDeger">3.750 TL</td><td id="tYilDeger">45.000 TL</td></tr>
+          <tr><th scope="row">Evrakçı lisansı</th><td>299 TL</td><td>2.990 TL</td></tr>
+        </tbody>
+      </table>
+      <p class="kucuk" style="margin-top:14px">Hesap: dosya sayısı × (elle süre − Evrakçı ile süre). Yıllık rakam 12 ay üzerinden. Gerçek süreniz belge sayısına, yazma hızınıza ve dosyanın karmaşıklığına göre değişir.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ic" id="nasil" aria-labelledby="nasil-b">
+  <div class="baslik">
+    <h2 id="nasil-b">Yeni dosyadan imzaya hazır belgelere beş adım</h2>
+    <p class="giris">Ekranlar uygulamanın kendisinden; Kira türünde örnek bir dosya.</p>
+  </div>
+  <ol class="adimlar">
+    <li class="adim">
+      <div><h3>Türü seçin</h3><p>İşçi–işveren, ticari, tüketici, kira, ortaklığın giderilmesi, kat mülkiyeti, komşu hakkı, tarımsal üretim sözleşmesi ve ihtiyari arabuluculuk için hazır setler gelir.</p></div>
+      <figure class="ekran"><img src="gorsel/tur-secimi.webp" alt="Dosyanın türünü seçin ekranı: dokuz arabuluculuk türü kart olarak listelenmiş" width="1440" height="765" loading="lazy" decoding="async"></figure>
+    </li>
+    <li class="adim">
+      <div><h3>Hazırlanacak tutanakları işaretleyin</h3><p>Anlaşma varsa anlaşma belgesi ve son tutanak, yoksa anlaşamama tutanağı. Form yalnızca işaretlediğiniz belgelerde geçen bilgileri sorar.</p></div>
+      <figure class="ekran"><img src="gorsel/tutanaklar.webp" alt="Hazırlanacak tutanaklar ekranı: yedi belge onay kutularıyla listelenmiş, üçü seçili" width="1440" height="765" loading="lazy" decoding="async"></figure>
+    </li>
+    <li class="adim">
+      <div><h3>Bilgileri bir kez yazın</h3><p>Değer girerken alanın altında belgeye nasıl yazılacağını görürsünüz: <q>64.000,00 TL · Altmış Dört Bin Türk Lirası</q>. Boş bıraktığınız satırlar belgeden çıkarılır.</p></div>
+      <figure class="ekran"><img src="gorsel/form-tutar.webp" alt="Tutanak bilgileri formu: yeni aylık kira bedeli 64000 yazılmış, altında yazıyla Altmış Dört Bin Türk Lirası görünüyor" width="1440" height="765" loading="lazy" decoding="async"></figure>
+    </li>
+    <li class="adim">
+      <div><h3>Önizlemede kontrol edin</h3><p>Değerler sarı, Türkçe ekler mavi işaretlidir; bir eke tıklayıp elle düzeltebilirsiniz. Belgeden çıkacak satırların üstü çizilidir.</p></div>
+      <figure class="ekran"><img src="gorsel/onizleme-ekler.webp" alt="Önizleme: anlaşma belgesinde değerler sarı, AYŞE DEMİR’e ve AYŞE DEMİR’in eklerindeki ekler mavi işaretli" width="1440" height="765" loading="lazy" decoding="async"></figure>
+    </li>
+    <li class="adim">
+      <div><h3>Belgeleri üretin</h3><p>Word, UYAP ya da ikisi birden. Dosya adları ve klasör kendiliğinden verilir; var olan bir dosyanın üzerine yazmadan önce sorulur.</p></div>
+      <figure class="ekran"><img src="gorsel/belgeler-uretildi.webp" alt="Belgeleri üret ekranı: dört belge hem Word hem UDF olarak kaydedildi" width="1440" height="765" loading="lazy" decoding="async"></figure>
+    </li>
+  </ol>
+</section>
+
+<section class="ic" id="video" aria-labelledby="video-b">
+  <div class="baslik">
+    <h2 id="video-b">Bir kira dosyası, baştan sona</h2>
+    <p class="giris">Tür seçimi, form, önizleme ve üretim; kesintisiz tek bir kayıttan kurgulandı. Form doldurma bölümü 12 kat hızlandırıldı, gerisi gerçek hızında.</p>
+  </div>
+  <div class="oynatici">
+    <video controls preload="none" playsinline poster="medya/tanitim-poster.jpg" aria-describedby="video-aciklama">
+      <source src="medya/tanitim.mp4" type="video/mp4">
+      Tarayıcınız videoyu oynatamıyor. <a href="medya/tanitim.mp4">Videoyu indirin</a>.
+    </video>
+  </div>
+  <p class="altyazi" id="video-aciklama">1 dakika 35 saniye, ses yok; açıklamalar videonun altındaki şeritte yazılı. Videodaki adlar, kimlik ve IBAN numaraları örnektir.</p>
+</section>
+
+<section class="ic" id="ozellikler" aria-labelledby="ozellik-b">
+  <div class="baslik">
+    <h2 id="ozellik-b">Belgeyi doğru yazan ayrıntılar</h2>
+  </div>
+  <div class="ozellik">
+    <div><h3>Türkçe ek uyumu</h3><p>Kesme işaretli ekler değere göre yeniden yazılır: CAHİT ARSLAN’ın, YALÇINKAYA’ya, TL’nin, 2026’da.</p></div>
+    <div><h3>Tutarlar yazıyla</h3><p>Para alanları rakamla ve yazıyla aynı anda yazılır; kuruşlar dahil.</p></div>
+    <div><h3>TCKN ve IBAN kontrolü</h3><p>Kontrol hanesi tutmayan bir kimlik ya da IBAN numarası girildiğinde alan hemen uyarır.</p></div>
+    <div><h3>Dosya kontrolleri</h3><p>Taksitlerin toplamı anlaşma tutarını tutmazsa ya da tarihler sırasız girilirse belge üretilmez.</p></div>
+    <div><h3>Hatırlanan bilgiler</h3><p>Adınız, sicil numaranız, büro adresiniz ve IBAN’ınız bir kez kaydedilir, her yeni dosyaya kendiliğinden gelir.</p></div>
+    <div><h3>Kendiliğinden kayıt</h3><p>Kaydet düğmesi yoktur; yazdığınız her şey anında saklanır. Dosyaya döndüğünüzde kaldığınız adımdan devam edersiniz.</p></div>
+    <div><h3>Şablon düzenleyici</h3><p>Metni uygulamanın içinde, Word gerekmeden düzeltin. Bir metni seçip değişken yapabilir, kendi setinizi oluşturabilirsiniz.</p></div>
+    <div><h3>UYAP biçimi</h3><p>Üretilen .udf dosyaları UYAP Doküman Editörü’nde açılır. Word ve UDF aynı şablondan üretildiği için bir düzeltme ikisine birden yansır.</p></div>
+    <div><h3>Kendiliğinden güncelleme</h3><p>Yeni sürümler arka planda indirilir, uygulamayı kapattığınızda kurulur.</p></div>
+  </div>
+  <div class="iki">
+    <figure><div class="ekran"><img src="gorsel/dogrulama.webp" alt="Formda T.C. kimlik numarası ve IBAN alanlarının altında kırmızı kontrol hanesi uyarıları" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Kontrol hanesi tutmayan TCKN ve IBAN anında işaretlenir.</figcaption></figure>
+    <figure><div class="ekran"><img src="gorsel/sablonlar.webp" alt="Şablonlar ekranı: arabuluculuk türlerine göre hazır setler ve Tüketici setinin yedi belgesi" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Hazır setler türe göre gruplanır; her belge düzenlenebilir.</figcaption></figure>
+    <figure><div class="ekran"><img src="gorsel/dosyalarim.webp" alt="Dosyalarım ekranı: dört örnek arabuluculuk dosyası, tür ve durumlarıyla" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Her dosya ilk tarafın adıyla listelenir; arama kutusuyla bulunur.</figcaption></figure>
+    <figure><div class="ekran"><img src="gorsel/koyu-onizleme.webp" alt="Koyu temada önizleme ekranı; belge sayfası beyaz kalıyor" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Koyu tema; belge sayfaları her temada beyaz kalır.</figcaption></figure>
+  </div>
+</section>
+
+<section class="ic" id="gizlilik" aria-labelledby="gizlilik-b">
+  <div class="baslik">
+    <h2 id="gizlilik-b">Müvekkil bilgileri bilgisayarınızda kalır</h2>
+    <p class="giris">Kişisel verilerin korunması arabulucunun sorumluluğundadır. Evrakçı bu yüzden belgeleri internete bağlanmadan üretir ve hiçbir dosya içeriğini dışarı göndermez.</p>
+  </div>
+  <div class="gizlilik">
+    <div class="kutu">
+      <h3>Bilgisayarınızda kalanlar</h3>
+      <ul>
+        <li>Formda yazdığınız bütün bilgiler ve üretilen belgeler.</li>
+        <li>Dosyalarınız Windows kullanıcınıza bağlı olarak şifreli saklanır (Windows DPAPI). Başka bir bilgisayarda ya da başka bir kullanıcıyla açılamaz.</li>
+        <li>Bir dosyayı başka bilgisayara taşımak için dışa aktarırken şifre koyabilirsiniz (AES-256).</li>
+        <li>Kullanım istatistiği ya da telemetri toplanmaz.</li>
+      </ul>
+    </div>
+    <div class="kutu">
+      <h3>İnternete gidenler</h3>
+      <ul>
+        <li><b>Lisans kontrolü:</b> yalnızca lisans numarası, bilgisayar kodu ve uygulama sürümü; ayda bir kez.</li>
+        <li><b>Güncelleme:</b> yeni sürüm olup olmadığı sorulur, varsa indirilir.</li>
+        <li>Bunların dışında hiçbir bilgi gönderilmez. Bu site de çerez ya da ziyaretçi takibi kullanmaz.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="ic" id="fiyat" aria-labelledby="fiyat-b">
+  <div class="baslik">
+    <h2 id="fiyat-b">Önce deneyin, sonra karar verin</h2>
+    <p class="giris">Deneme için kart ya da kayıt istenmez. Uygulamayı indirip hemen kullanmaya başlarsınız.</p>
+  </div>
+  <div class="fiyatlar">
+    <div class="plan">
+      <h3>Ücretsiz deneme</h3>
+      <p class="tutar">0 TL</p>
+      <ul>
+        <li>14 gün içinde 3 dosya</li>
+        <li>Bütün türler ve belgeler, Word ve UYAP</li>
+        <li>Kart, kayıt ya da e-posta istenmez</li>
+      </ul>
+      <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+    </div>
+    <div class="plan">
+      <h3>Aylık</h3>
+      <p class="tutar">299 TL <small>/ ay</small></p>
+      <ul>
+        <li>Sınırsız dosya ve belge</li>
+        <li>Bütün güncellemeler</li>
+        <li>E-postayla destek</li>
+      </ul>
+      <a class="dugme ikinci" href="#iletisim" data-plan="Aylık (299 TL)">Aylık planı satın al</a>
+    </div>
+    <div class="plan one">
+      <span class="muhur" aria-hidden="true">2 ay<br>bedava</span>
+      <h3>Yıllık</h3>
+      <p class="tutar">2.990 TL <small>/ yıl</small></p>
+      <ul>
+        <li>Aylık planın her şeyi</li>
+        <li>12 ay, 10 aylık fiyatına</li>
+        <li>Ayda yaklaşık 249 TL’ye denk gelir</li>
+      </ul>
+      <a class="dugme ikinci" href="#iletisim" data-plan="Yıllık (2.990 TL)">Yıllık planı satın al</a>
+    </div>
+  </div>
+  <p class="kucuk" style="margin-top:22px">Çevrim içi ödeme henüz açık değil. Satın almak için aşağıdaki formu gönderin; ödeme bilgilerini e-postayla iletiyoruz, ödemeden sonra lisans numaranız e-postanıza gelir. Bir lisans bir bilgisayarda kullanılır.</p>
+</section>
+
+<section class="ic" id="sss" aria-labelledby="sss-b">
+  <div class="baslik"><h2 id="sss-b">Sık sorulanlar</h2></div>
+  <div class="sss">
+    <details><summary>Deneme bitince dosyalarıma ne olur?</summary><div><p>Hiçbir şey silinmez. Dosyalarınızı açabilir, görüntüleyebilir ve dışa aktarabilirsiniz; yalnızca yeni belge üretimi lisans gerektirir. Deneme bittikten sonra da son dosyalarınızı 14 gün dolana kadar düzeltip yeniden üretebilirsiniz.</p></div></details>
+    <details><summary>Deneme hakkı nasıl sayılıyor?</summary><div><p>“Dosya”, ilk tarafın adı ve türüdür (ör. “AYŞE YILMAZ – Kira”). Aynı dosyanın belgelerini yeniden üretmek hak harcamaz. 14 gün ya da 3 dosyadan hangisi önce dolarsa deneme biter.</p></div></details>
+    <details><summary>Üretilen .udf dosyaları UYAP’ta açılıyor mu?</summary><div><p>Evet. Dosyalar UYAP Doküman Editörü’nün kullandığı yapıda yazılır; Kira setinin yedi belgesinden üretilen dosyaların editörde açıldığı denendi. UDF biçiminin resmî bir belgesi olmadığından, editörün yeni sürümlerinde bir sorun görürseniz bize yazın. Evrakçı’nın Adalet Bakanlığı ya da UYAP ile bir bağlantısı yoktur.</p></div></details>
+    <details><summary>Hazır metinleri olduğu gibi kullanabilir miyim?</summary><div><p>Hazır metinler 6325 sayılı Kanun ve Arabuluculuk Yönetmeliği esas alınarak hazırlanmış genel taslaklardır. Kendi uygulamanıza göre gözden geçirmenizi öneririz; her metni uygulamanın içinde ya da Word’de değiştirebilir, değişikliği bütün yeni dosyalarda kullanabilirsiniz.</p></div></details>
+    <details><summary>Kendi Word şablonlarımı kullanabilir miyim?</summary><div><p>Evet. Kendi belgenizi sete ekleyip içindeki adları, tarihleri ve tutarları seçerek değişkene çevirebilirsiniz. Doldurulmuş eski bir belgeden şablon yapmak da bu şekilde olur.</p></div></details>
+    <details><summary>İnternet bağlantısı gerekiyor mu?</summary><div><p>Belge üretmek için gerekmez. Uygulama lisansı ayda bir kontrol etmek ve güncellemeleri almak için internete bağlanır; bağlantı yokken çalışmaya devam eder.</p></div></details>
+    <details><summary>Kurulumda Windows “bilinmeyen yayımcı” uyarısı gösteriyor.</summary><div><p>Kurulum dosyası henüz kod imzalama sertifikasıyla imzalanmadığı için Windows SmartScreen bu uyarıyı gösterebilir. “Ek bilgi”ye, ardından “Yine de çalıştır”a tıklayarak kurabilirsiniz. Kurulum yönetici izni istemez ve yalnızca sizin kullanıcınıza yapılır.</p></div></details>
+    <details><summary>Mac ya da Linux sürümü var mı?</summary><div><p>Şimdilik yalnızca Windows 10 ve Windows 11 için.</p></div></details>
+    <details><summary>Bilgisayarımı değiştirirsem lisansım ne olur?</summary><div><p>Bir lisans bir bilgisayarda çalışır. Bilgisayar değiştirdiğinizde bize yazmanız yeterli; lisansınızı yeni bilgisayara aktarırız. Dosyalarınızı da dışa aktarıp yeni bilgisayarda içe aktarabilirsiniz.</p></div></details>
+    <details><summary>Fatura alabilir miyim?</summary><div><p>Evet, ödemeniz için fatura düzenlenir. Fatura bilgilerinizi satın alma formunun mesaj kısmına yazabilirsiniz.</p></div></details>
+  </div>
+</section>
+
+<section class="ic" id="iletisim" aria-labelledby="iletisim-b">
+  <div class="iletisim">
+    <div>
+      <h2 id="iletisim-b">Satın alma ve sorular</h2>
+      <p class="giris" style="margin-top:14px">Formu gönderin, en kısa sürede e-postayla dönelim. Satın almak istiyorsanız ödeme bilgilerini iletiriz; ödemeden sonra lisans numaranız e-postanıza gelir.</p>
+      <p>Doğrudan yazmak isterseniz:<br><a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
+    </div>
+    <form class="form" name="iletisim" method="POST" action="/tesekkurler.html" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="iletisim">
+      <p class="bal"><label>Bu alanı boş bırakın <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="cift">
+        <div><label for="ad">Adınız soyadınız</label><input id="ad" name="ad" type="text" autocomplete="name" required></div>
+        <div><label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="cift">
+        <div><label for="telefon">Telefon (isteğe bağlı)</label><input id="telefon" name="telefon" type="tel" autocomplete="tel"></div>
+        <div><label for="plan">Konu</label>
+          <select id="plan" name="plan">
+            <option>Yıllık (2.990 TL)</option>
+            <option>Aylık (299 TL)</option>
+            <option selected>Soru ya da bilgi</option>
+          </select></div>
+      </div>
+      <div><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" placeholder="Fatura bilgileri ya da sorunuz"></textarea></div>
+      <p class="kucuk" style="margin:0">Bu bilgileri yalnızca size dönüş yapmak ve lisansınızı göndermek için kullanırız.</p>
+      <div><button class="dugme ana" type="submit">Gönder</button></div>
+    </form>
+  </div>
+</section>
+
+<div class="son ic">
+  <h2>Bir sonraki dosyanızı Evrakçı ile hazırlayın.</h2>
+  <p class="giris" style="margin-top:14px">14 gün ya da 3 dosya boyunca ücretsiz; kart bilgisi istenmez.</p>
+  <div class="eylem"><a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a></div>
+</div>
+</main>
+
+<footer class="alt ic">
+  <p>Evrakçı · Arabuluculuk evrakı. İletişim: <a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
+  <p>UYAP, T.C. Adalet Bakanlığı’nın bilişim sistemidir; Evrakçı’nın Adalet Bakanlığı ile bir bağlantısı yoktur. Microsoft Word, Microsoft Corporation’ın markasıdır.</p>
+</footer>
+</div>
+
+<script>
+(function () {
+  // Hero loop: plays only when motion is welcome; always pausable.
+  var v = document.getElementById('dongu'), b = document.getElementById('donguDugme');
+  var azHareket = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (v && b) {
+    b.hidden = false;
+    var guncelle = function () { b.textContent = v.paused ? 'Oynat' : 'Durdur'; b.setAttribute('aria-label', v.paused ? 'Kısa videoyu oynat' : 'Kısa videoyu durdur'); };
+    b.addEventListener('click', function () { if (v.paused) { v.play(); } else { v.pause(); } });
+    v.addEventListener('play', guncelle); v.addEventListener('pause', guncelle);
+    if (!azHareket) { var p = v.play(); if (p && p.catch) p.catch(guncelle); }
+    guncelle();
+  }
+
+  // Purchase buttons pre-select the plan in the contact form.
+  var sec = document.getElementById('plan');
+  function planSec(ad) {
+    for (var i = 0; i < sec.options.length; i++) if (sec.options[i].text === ad) sec.selectedIndex = i;
+  }
+  document.querySelectorAll('[data-plan]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      planSec(a.getAttribute('data-plan'));
+      setTimeout(function () { document.getElementById('ad').focus({ preventScroll: true }); }, azHareket ? 0 : 450);
+    });
+  });
+  var q = new URLSearchParams(location.search).get('plan');
+  if (q === 'yillik') planSec('Yıllık (2.990 TL)'); else if (q === 'aylik') planSec('Aylık (299 TL)');
+
+  // Time calculator.
+  var sayi = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 1 });
+  var tl = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 });
+  function al(id, varsay) { var n = parseFloat(document.getElementById(id).value); return isFinite(n) && n >= 0 ? n : varsay; }
+  function yaz(id, s) { document.getElementById(id).textContent = s; }
+  function hesapla() {
+    var d = al('dosya', 0), e = al('elle', 0), k = al('evrakci', 0), u = al('ucret', 0);
+    var ayElle = d * e / 60, ayEv = d * k / 60, ayKazanc = Math.max(0, ayElle - ayEv), yil = ayKazanc * 12;
+    yaz('yilSaat', sayi.format(yil) + ' saat');
+    yaz('gunKarsilik', 'Yaklaşık ' + sayi.format(Math.round(yil / 8)) + ' iş günü (8 saatlik).');
+    yaz('ayElle', sayi.format(ayElle) + ' sa'); yaz('ayEvrakci', sayi.format(ayEv) + ' sa');
+    var en = Math.max(ayElle, ayEv, 0.0001);
+    document.getElementById('barElle').style.width = (ayElle / en * 100) + '%';
+    document.getElementById('barEvrakci').style.width = (ayEv / en * 100) + '%';
+    yaz('tAySaat', sayi.format(ayKazanc) + ' saat'); yaz('tYilSaat', sayi.format(yil) + ' saat');
+    yaz('tAyDeger', tl.format(ayKazanc * u) + ' TL'); yaz('tYilDeger', tl.format(yil * u) + ' TL');
+  }
+  document.getElementById('hesapForm').addEventListener('input', hesapla);
+  hesapla();
+})();
+</script>
+</body>
+</html>

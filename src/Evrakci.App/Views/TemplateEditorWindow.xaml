@@ -1,0 +1,129 @@
+<ui:FluentWindow x:Class="Evrakci.App.Views.TemplateEditorWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 Width="1100" Height="860" MinWidth="820" MinHeight="560"
+                 WindowStartupLocation="CenterOwner" ShowInTaskbar="False" FontSize="15"
+                 ExtendsContentIntoTitleBar="True" WindowBackdropType="None">
+    <ui:FluentWindow.Resources>
+        <Style x:Key="Tool" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+            <Setter Property="Appearance" Value="Transparent" />
+            <Setter Property="Padding" Value="8,6" />
+            <Setter Property="Margin" Value="0,0,2,0" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+        <Style x:Key="Sep" TargetType="Rectangle">
+            <Setter Property="Width" Value="1" />
+            <Setter Property="Margin" Value="6,6" />
+            <Setter Property="Fill" Value="{DynamicResource DividerStrokeColorDefaultBrush}" />
+        </Style>
+    </ui:FluentWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ui:TitleBar x:Name="Bar" Title="Şablon düzenleyici" />
+
+        <!-- Toolbar -->
+        <Border Grid.Row="1" Margin="16,0,16,8" Padding="8,6" CornerRadius="8"
+                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+            <DockPanel>
+                <ComboBox x:Name="Docs" DockPanel.Dock="Left" MinWidth="220" MaxWidth="300" DisplayMemberPath="Entry.Template"
+                          SelectionChanged="OnDocChanged" ToolTip="Düzenlenecek belge" Margin="0,0,8,0" />
+                <ui:Button DockPanel.Dock="Right" Content="Kapat" Click="OnClose" Margin="6,0,0,0" />
+                <!-- Opened from a file: two ways to save (this file only / the template itself) -->
+                <ui:Button x:Name="PublishButton" DockPanel.Dock="Right" Icon="{ui:SymbolIcon DocumentArrowUp20}" Content="Şablona kaydet"
+                           Click="OnPublish" Margin="6,0,0,0" Visibility="Collapsed"
+                           ToolTip="Değişikliği setin asıl şablonuna yaz; bundan sonraki bütün dosyalar bu hâli kullanır" />
+                <ui:Button x:Name="SaveButton" DockPanel.Dock="Right" Appearance="Primary" Icon="{ui:SymbolIcon Save24}" Content="Kaydet"
+                           Click="OnSave" ToolTip="Kaydet (Ctrl+S)" />
+                <WrapPanel VerticalAlignment="Center">
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon ArrowUndo24}" Command="ApplicationCommands.Undo"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Geri al (Ctrl+Z)" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon ArrowRedo24}" Command="ApplicationCommands.Redo"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Yinele (Ctrl+Y)" />
+                    <Rectangle Style="{StaticResource Sep}" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextBold24}" Command="EditingCommands.ToggleBold"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Kalın (Ctrl+B)" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextItalic24}" Command="EditingCommands.ToggleItalic"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="İtalik (Ctrl+I)" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextUnderline24}" Command="EditingCommands.ToggleUnderline"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Altı çizili (Ctrl+U)" />
+                    <Rectangle Style="{StaticResource Sep}" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextAlignLeft24}" Command="EditingCommands.AlignLeft"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Sola hizala" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextAlignCenter24}" Command="EditingCommands.AlignCenter"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Ortala" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextAlignRight24}" Command="EditingCommands.AlignRight"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="Sağa hizala" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextAlignJustify24}" Command="EditingCommands.AlignJustify"
+                               CommandTarget="{Binding ElementName=Editor}" ToolTip="İki yana yasla" />
+                    <Rectangle Style="{StaticResource Sep}" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon BracesVariable24}" Content="Değişken yap"
+                               Click="OnMakeVariable" ToolTip="Seçili metni değişkene çevir" />
+                    <ui:Button x:Name="InsertButton" Style="{StaticResource Tool}" Icon="{ui:SymbolIcon Add24}" Content="Değişken ekle"
+                               Click="OnInsertMenu" ToolTip="İmlecin olduğu yere var olan bir değişkeni ekle" />
+                    <Rectangle Style="{StaticResource Sep}" />
+                    <ui:Button x:Name="RevertButton" Style="{StaticResource Tool}" Icon="{ui:SymbolIcon History24}" Click="OnRevert"
+                               IsEnabled="False" ToolTip="Son kaydı geri al" />
+                    <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon Open24}" Click="OnOpenInWord"
+                               ToolTip="Dosyayı Word'de aç (resim, tablo yapısı gibi ileri düzenlemeler için)" />
+                </WrapPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Page -->
+        <Border Grid.Row="2" Margin="16,0,16,8" CornerRadius="6" Background="{StaticResource PaperBrush}"
+                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1" MaxWidth="940">
+            <Grid>
+                <RichTextBox x:Name="Editor" Background="{StaticResource PaperBrush}" Foreground="{StaticResource PaperTextBrush}"
+                             BorderThickness="0" Padding="40,28,40,28" AcceptsTab="True" VerticalScrollBarVisibility="Auto"
+                             SelectionBrush="#3D7FD3" CaretBrush="{StaticResource PaperTextBrush}" SpellCheck.IsEnabled="False"
+                             TextChanged="OnTextChanged" PreviewMouseLeftButtonUp="OnMouseUp" ContextMenuOpening="OnContextMenuOpening">
+                    <RichTextBox.ContextMenu>
+                        <ContextMenu x:Name="Menu" />
+                    </RichTextBox.ContextMenu>
+                </RichTextBox>
+                <Popup x:Name="SelectionPopup" StaysOpen="False" Placement="MousePoint" AllowsTransparency="True"
+                       PopupAnimation="Fade" HorizontalOffset="8" VerticalOffset="14">
+                    <Border Padding="4" CornerRadius="8" Background="{DynamicResource ApplicationBackgroundBrush}"
+                            BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="14" ShadowDepth="2" Opacity="0.25" />
+                        </Border.Effect>
+                        <StackPanel Orientation="Horizontal">
+                            <ui:Button Content="Değişken yap" Icon="{ui:SymbolIcon BracesVariable24}" Appearance="Primary" Focusable="False"
+                                       Click="OnMakeVariable" Margin="0,0,4,0" />
+                            <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextBold24}" Command="EditingCommands.ToggleBold"
+                                       CommandTarget="{Binding ElementName=Editor}" ToolTip="Kalın" />
+                            <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextItalic24}" Command="EditingCommands.ToggleItalic"
+                                       CommandTarget="{Binding ElementName=Editor}" ToolTip="İtalik" />
+                            <ui:Button Style="{StaticResource Tool}" Icon="{ui:SymbolIcon TextUnderline24}" Command="EditingCommands.ToggleUnderline"
+                                       CommandTarget="{Binding ElementName=Editor}" ToolTip="Altı çizili" />
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </Grid>
+        </Border>
+
+        <!-- Status -->
+        <Grid Grid.Row="3" Margin="20,0,20,12">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse x:Name="DirtyDot" Width="8" Height="8" Margin="0,0,8,0" VerticalAlignment="Center"
+                         Fill="{DynamicResource SystemFillColorCautionBrush}" Visibility="Collapsed" />
+                <TextBlock x:Name="Status" Style="{StaticResource Subtle}" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <TextBlock x:Name="ModeText" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" Margin="0,0,14,0"
+                           Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                <TextBlock Style="{StaticResource Subtle}" FontSize="14" VerticalAlignment="Center"
+                           Text="Yeşil: değişken  ·  Seçip “Değişken yap”" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</ui:FluentWindow>

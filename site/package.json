@@ -1,0 +1,8 @@
+{
+  "name": "evrakci-site",
+  "private": true,
+  "description": "evrakci.netlify.app: tanıtım sayfası ve güncelleme dosyaları (statik).",
+  "devDependencies": {
+    "netlify-cli": "27.16.2"
+  }
+}

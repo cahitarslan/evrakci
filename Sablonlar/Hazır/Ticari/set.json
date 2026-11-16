@@ -1,0 +1,543 @@
+{
+  "formatVersion": 1,
+  "name": "Ticari Uyuşmazlık Arabuluculuğu",
+  "description": "Konusu bir miktar paranın ödenmesi olan alacak ve tazminat talepleri (6102 sayılı TTK m.5/A).",
+  "category": "Ticari",
+  "delimiters": {
+    "open": "{{{",
+    "close": "}}}"
+  },
+  "formats": {
+    "date": "dd.MM.yyyy",
+    "money": "{tutar} {simge}",
+    "phone": "0### ### ## ##"
+  },
+  "currencies": {
+    "TRY": {
+      "symbol": "TL",
+      "main": "Türk Lirası",
+      "sub": "Kuruş"
+    },
+    "USD": {
+      "symbol": "USD",
+      "main": "Amerikan Doları",
+      "sub": "Sent"
+    },
+    "EUR": {
+      "symbol": "EUR",
+      "main": "Avro",
+      "sub": "Sent"
+    }
+  },
+  "outputFolder": "{{{TARAF1 ADI}}} - Ticari",
+  "documents": [
+    {
+      "template": "01 Arabulucu Belirleme Tutanağı.docx",
+      "optional": true,
+      "note": "Taraflar arabulucu üzerinde başvuru sırasında anlaştıysa"
+    },
+    {
+      "template": "02 İlk Toplantıya Davet.docx",
+      "optional": true,
+      "note": "Taraflara gönderilecek yazılı davet"
+    },
+    {
+      "template": "03 Bilgilendirme ve İlk Oturum Tutanağı.docx",
+      "note": "İlk toplantıda imzalanır"
+    },
+    {
+      "template": "04 Anlaşma Belgesi.docx",
+      "note": "Anlaşma hâlinde"
+    },
+    {
+      "template": "05 Son Tutanak - Anlaşma.docx",
+      "note": "Anlaşma hâlinde"
+    },
+    {
+      "template": "06 Son Tutanak - Anlaşamama.docx",
+      "optional": true,
+      "note": "Anlaşma sağlanamazsa (anlaşma belgelerinin yerine)"
+    },
+    {
+      "template": "07 Son Tutanak - Toplantıya Katılmama.docx",
+      "optional": true,
+      "note": "Taraflardan biri ilk toplantıya katılmazsa ya da ulaşılamazsa"
+    }
+  ],
+  "groups": [
+    "Dosya",
+    "Arabulucu",
+    "Taraf-1",
+    "Taraf-2",
+    "Ticari İlişki",
+    "Anlaşma ve Ödeme",
+    "Arabuluculuk Ücreti",
+    "Toplantı",
+    "Sonuç"
+  ],
+  "fields": {
+    "DOSYA NO": {
+      "type": "Metin",
+      "label": "Arabuluculuk dosya numarası",
+      "group": "Dosya",
+      "hint": "Örn. 2026/1234"
+    },
+    "BÜRO DOSYA NO": {
+      "type": "Metin",
+      "label": "Arabuluculuk bürosu dosya numarası",
+      "group": "Dosya",
+      "hint": "Örn. 2026/56789"
+    },
+    "ARABULUCULUK BÜROSU": {
+      "type": "Metin",
+      "label": "Görevlendiren arabuluculuk bürosu",
+      "group": "Dosya",
+      "hint": "Örn. Ankara Adliyesi Arabuluculuk Bürosu"
+    },
+    "BAŞVURU TARİHİ": {
+      "type": "Tarih",
+      "label": "Başvuru tarihi",
+      "group": "Dosya"
+    },
+    "GÖREVLENDİRME TARİHİ": {
+      "type": "Tarih",
+      "label": "Arabulucunun görevlendirildiği tarih",
+      "group": "Dosya",
+      "defaultFrom": "BAŞVURU TARİHİ"
+    },
+    "UYUŞMAZLIK KONUSU": {
+      "type": "Metin",
+      "label": "Uyuşmazlığın konusu",
+      "group": "Dosya",
+      "default": "Ticari ilişkiden kaynaklanan alacak talebi"
+    },
+    "SONUÇLANDIRMA SÜRESİ": {
+      "type": "Metin",
+      "label": "Yasal süre (bilgilendirme metni)",
+      "group": "Dosya",
+      "default": "altı hafta içinde sonuçlandırır; bu süre zorunlu hâllerde arabulucu tarafından en fazla iki hafta uzatılabilir"
+    },
+    "ARABULUCU ADI SOYADI": {
+      "type": "Metin",
+      "label": "Adı soyadı",
+      "group": "Arabulucu",
+      "hint": "“Hatırla” ile bir kez girin",
+      "transform": "upper"
+    },
+    "ARABULUCU SİCİL NO": {
+      "type": "Metin",
+      "label": "Arabulucu sicil numarası",
+      "group": "Arabulucu",
+      "pattern": "^\\d+$"
+    },
+    "ARABULUCU TCKN": {
+      "type": "TCKN",
+      "label": "T.C. kimlik numarası",
+      "group": "Arabulucu"
+    },
+    "ARABULUCU ADRES": {
+      "type": "Metin",
+      "label": "Büro adresi",
+      "group": "Arabulucu"
+    },
+    "ARABULUCU TELEFON": {
+      "type": "Telefon",
+      "label": "Telefon",
+      "group": "Arabulucu"
+    },
+    "ARABULUCU E-POSTA": {
+      "type": "Metin",
+      "label": "E-posta",
+      "group": "Arabulucu",
+      "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    },
+    "ARABULUCU IBAN": {
+      "type": "IBAN",
+      "label": "Ücretin ödeneceği IBAN",
+      "group": "Arabulucu"
+    },
+    "TARAF1 SIFATI": {
+      "type": "Metin",
+      "label": "Sıfatı",
+      "group": "Taraf-1",
+      "default": "Başvurucu"
+    },
+    "TARAF1 ADI": {
+      "type": "Metin",
+      "label": "Adı soyadı / unvanı",
+      "group": "Taraf-1",
+      "transform": "upper"
+    },
+    "TARAF1 KİMLİK NO": {
+      "type": "Metin",
+      "label": "T.C. kimlik / vergi numarası",
+      "group": "Taraf-1",
+      "hint": "Gerçek kişide 11 haneli TCKN, şirkette 10 haneli VKN",
+      "pattern": "^\\d{10,11}$"
+    },
+    "TARAF1 ADRES": {
+      "type": "Metin",
+      "label": "Adresi",
+      "group": "Taraf-1"
+    },
+    "TARAF1 TELEFON": {
+      "type": "Telefon",
+      "label": "Telefon",
+      "group": "Taraf-1",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TARAF1 YETKİLİSİ": {
+      "type": "Metin",
+      "label": "Yetkilisi / temsilcisi",
+      "group": "Taraf-1",
+      "hint": "Tüzel kişi ya da temsil varsa",
+      "transform": "upper",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TARAF1 VEKİLİ": {
+      "type": "Metin",
+      "label": "Vekili (avukat)",
+      "group": "Taraf-1",
+      "hint": "Örn. Av. Ayşe YILMAZ (Ankara Barosu)",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TARAF2 SIFATI": {
+      "type": "Metin",
+      "label": "Sıfatı",
+      "group": "Taraf-2",
+      "default": "Karşı Taraf"
+    },
+    "TARAF2 ADI": {
+      "type": "Metin",
+      "label": "Adı soyadı / unvanı",
+      "group": "Taraf-2",
+      "transform": "upper"
+    },
+    "TARAF2 KİMLİK NO": {
+      "type": "Metin",
+      "label": "T.C. kimlik / vergi numarası",
+      "group": "Taraf-2",
+      "hint": "Gerçek kişide 11 haneli TCKN, şirkette 10 haneli VKN",
+      "pattern": "^\\d{10,11}$"
+    },
+    "TARAF2 ADRES": {
+      "type": "Metin",
+      "label": "Adresi",
+      "group": "Taraf-2"
+    },
+    "TARAF2 TELEFON": {
+      "type": "Telefon",
+      "label": "Telefon",
+      "group": "Taraf-2",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TARAF2 YETKİLİSİ": {
+      "type": "Metin",
+      "label": "Şirket yetkilisi",
+      "group": "Taraf-2",
+      "hint": "Tüzel kişi ya da temsil varsa",
+      "transform": "upper",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TARAF2 VEKİLİ": {
+      "type": "Metin",
+      "label": "Vekili (avukat)",
+      "group": "Taraf-2",
+      "hint": "Örn. Av. Ayşe YILMAZ (Ankara Barosu)",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "DAYANAK BELGE": {
+      "type": "Metin",
+      "label": "Alacağın dayanağı",
+      "group": "Ticari İlişki",
+      "hint": "Örn. 12.03.2026 tarihli ve 123 numaralı fatura",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TALEP EDİLEN TUTAR": {
+      "type": "Para",
+      "label": "Başvuruda talep edilen tutar",
+      "group": "Ticari İlişki",
+      "currency": "TRY",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "ANLAŞMA TUTARI": {
+      "type": "Para",
+      "label": "Mutabık kalınan toplam tutar",
+      "group": "Anlaşma ve Ödeme",
+      "currency": "TRY"
+    },
+    "ÖDEME YAPACAK TARAF": {
+      "type": "Metin",
+      "label": "Ödemeyi yapacak taraf",
+      "group": "Anlaşma ve Ödeme",
+      "hint": "Boş bırakılırsa Taraf-2",
+      "defaultFrom": "TARAF2 ADI",
+      "transform": "upper"
+    },
+    "ÖDEME ALACAK TARAF": {
+      "type": "Metin",
+      "label": "Ödemeyi alacak taraf",
+      "group": "Anlaşma ve Ödeme",
+      "hint": "Boş bırakılırsa Taraf-1",
+      "defaultFrom": "TARAF1 ADI",
+      "transform": "upper"
+    },
+    "ÖDEME IBAN": {
+      "type": "IBAN",
+      "label": "Ödemenin yapılacağı IBAN",
+      "group": "Anlaşma ve Ödeme",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TAKSİT1 TARİHİ": {
+      "type": "Tarih",
+      "label": "1. ödeme tarihi",
+      "group": "Anlaşma ve Ödeme"
+    },
+    "TAKSİT1 TUTARI": {
+      "type": "Para",
+      "label": "1. ödeme tutarı",
+      "group": "Anlaşma ve Ödeme",
+      "currency": "TRY"
+    },
+    "TAKSİT2 TARİHİ": {
+      "type": "Tarih",
+      "label": "2. taksit tarihi",
+      "group": "Anlaşma ve Ödeme",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TAKSİT2 TUTARI": {
+      "type": "Para",
+      "label": "2. taksit tutarı",
+      "group": "Anlaşma ve Ödeme",
+      "currency": "TRY",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TAKSİT3 TARİHİ": {
+      "type": "Tarih",
+      "label": "3. taksit tarihi",
+      "group": "Anlaşma ve Ödeme",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TAKSİT3 TUTARI": {
+      "type": "Para",
+      "label": "3. taksit tutarı",
+      "group": "Anlaşma ve Ödeme",
+      "currency": "TRY",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TAKSİT4 TARİHİ": {
+      "type": "Tarih",
+      "label": "4. taksit tarihi",
+      "group": "Anlaşma ve Ödeme",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TAKSİT4 TUTARI": {
+      "type": "Para",
+      "label": "4. taksit tutarı",
+      "group": "Anlaşma ve Ödeme",
+      "currency": "TRY",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "EK HUSUSLAR": {
+      "type": "Metin",
+      "label": "Ek hususlar",
+      "group": "Anlaşma ve Ödeme",
+      "hint": "Belgeye ayrı bir paragraf olarak eklenir",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TARİFE YILI": {
+      "type": "Metin",
+      "label": "Arabuluculuk ücret tarifesi yılı",
+      "group": "Arabuluculuk Ücreti",
+      "default": "2026",
+      "pattern": "^\\d{4}$"
+    },
+    "ARABULUCULUK ÜCRETİ": {
+      "type": "Para",
+      "label": "Arabuluculuk ücreti (KDV ve stopaj dâhil)",
+      "group": "Arabuluculuk Ücreti",
+      "currency": "TRY"
+    },
+    "ÜCRET PAYLAŞIMI": {
+      "type": "Metin",
+      "label": "Ücretin karşılanma şekli",
+      "group": "Arabuluculuk Ücreti",
+      "default": "taraflarca eşit olarak"
+    },
+    "ÜCRET ÖDEME TARİHİ": {
+      "type": "Tarih",
+      "label": "Ücretin son ödeme tarihi",
+      "group": "Arabuluculuk Ücreti"
+    },
+    "İLK OTURUM TARİHİ": {
+      "type": "Tarih",
+      "label": "İlk toplantı tarihi",
+      "group": "Toplantı"
+    },
+    "TOPLANTI SAATİ": {
+      "type": "Metin",
+      "label": "İlk toplantı saati",
+      "group": "Toplantı",
+      "hint": "Örn. 14:00",
+      "pattern": "^\\d{1,2}[:.]\\d{2}$"
+    },
+    "TOPLANTI YERİ": {
+      "type": "Metin",
+      "label": "Toplantı yeri (yüz yüze)",
+      "group": "Toplantı",
+      "hint": "Boş bırakılırsa arabulucu adresi. Telekonferansta silgiyle “boş bırak”ın.",
+      "defaultFrom": "ARABULUCU ADRES",
+      "removeParagraphIfBlank": true
+    },
+    "TELEKONFERANS": {
+      "type": "Metin",
+      "label": "Telekonferans (yüz yüze ise boş)",
+      "group": "Toplantı",
+      "hint": "Örn. taraf vekillerinin talebi doğrultusunda telekonferans yoluyla",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "TELEKONFERANS KATILIM": {
+      "type": "Metin",
+      "label": "Telekonferansta aranan hatlar",
+      "group": "Toplantı",
+      "hint": "Örn. başvurucu vekili Av. Ayşe YILMAZ 0 (532) 000 00 00 no’lu hattan, karşı taraf vekili Av. Ali KAYA 0 (533) 000 00 00 no’lu hattan",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "İMZA ŞEKLİ": {
+      "type": "Metin",
+      "label": "İmza şekli",
+      "group": "Toplantı",
+      "hint": "Elektronik imzada: hep birlikte elektronik imza marifetiyle",
+      "default": "hep birlikte"
+    },
+    "E-İMZA NOTU": {
+      "type": "Metin",
+      "label": "İmzaların altındaki not",
+      "group": "Toplantı",
+      "hint": "Elektronik imzada “boş bırak”ı kaldırın",
+      "default": "e-imzalıdır!",
+      "removeParagraphIfBlank": true,
+      "blankByDefault": true
+    },
+    "DAVET TARİHİ": {
+      "type": "Tarih",
+      "label": "Davet yazısının tarihi",
+      "group": "Toplantı",
+      "defaultFrom": "GÖREVLENDİRME TARİHİ"
+    },
+    "DAVET YÖNTEMİ": {
+      "type": "Metin",
+      "label": "Davet yöntemi",
+      "group": "Toplantı",
+      "default": "telefon, kısa mesaj ve e-posta"
+    },
+    "SON OTURUM TARİHİ": {
+      "type": "Tarih",
+      "label": "Son toplantı / tutanak tarihi",
+      "group": "Toplantı",
+      "defaultFrom": "İLK OTURUM TARİHİ"
+    },
+    "NÜSHA SAYISI": {
+      "type": "Metin",
+      "label": "Nüsha sayısı (yazıyla)",
+      "group": "Toplantı",
+      "default": "üç"
+    },
+    "GÖRÜŞME SÜRESİ": {
+      "type": "Metin",
+      "label": "Görüşmelerin toplam süresi",
+      "group": "Sonuç",
+      "default": "iki saat"
+    },
+    "KATILMAYAN TARAF": {
+      "type": "Metin",
+      "label": "İlk toplantıya katılmayan taraf",
+      "group": "Sonuç",
+      "defaultFrom": "TARAF2 ADI",
+      "transform": "upper"
+    }
+  },
+  "checks": [
+    {
+      "kind": "sumEquals",
+      "fields": [
+        "TAKSİT1 TUTARI",
+        "TAKSİT2 TUTARI",
+        "TAKSİT3 TUTARI",
+        "TAKSİT4 TUTARI"
+      ],
+      "equals": "ANLAŞMA TUTARI",
+      "message": "Ödemelerin toplamı anlaşma tutarına eşit değil."
+    },
+    {
+      "kind": "dateOrder",
+      "fields": [
+        "BAŞVURU TARİHİ",
+        "GÖREVLENDİRME TARİHİ",
+        "İLK OTURUM TARİHİ",
+        "SON OTURUM TARİHİ"
+      ],
+      "message": "Tarihler sırasız: başvuru ≤ görevlendirme ≤ ilk oturum ≤ son oturum olmalı."
+    },
+    {
+      "kind": "dateOrder",
+      "fields": [
+        "TAKSİT1 TARİHİ",
+        "TAKSİT2 TARİHİ",
+        "TAKSİT3 TARİHİ",
+        "TAKSİT4 TARİHİ"
+      ],
+      "message": "Ödeme tarihleri sıralı olmalı."
+    },
+    {
+      "kind": "blankTogether",
+      "fields": [
+        "TAKSİT2 TARİHİ",
+        "TAKSİT2 TUTARI"
+      ],
+      "message": "2. taksitin tarihi ve tutarı birlikte girilmeli ya da birlikte boş bırakılmalı."
+    },
+    {
+      "kind": "blankTogether",
+      "fields": [
+        "TAKSİT3 TARİHİ",
+        "TAKSİT3 TUTARI"
+      ],
+      "message": "3. taksitin tarihi ve tutarı birlikte girilmeli ya da birlikte boş bırakılmalı."
+    },
+    {
+      "kind": "blankTogether",
+      "fields": [
+        "TAKSİT4 TARİHİ",
+        "TAKSİT4 TUTARI"
+      ],
+      "message": "4. taksitin tarihi ve tutarı birlikte girilmeli ya da birlikte boş bırakılmalı."
+    },
+    {
+      "kind": "atMostOne",
+      "fields": [
+        "TOPLANTI YERİ",
+        "TELEKONFERANS"
+      ],
+      "message": "Toplantı ya yüz yüze ya telekonferansla yapılır: telekonferansta “Toplantı yeri”ni silgiyle boş bırakın."
+    }
+  ]
+}

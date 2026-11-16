@@ -1,0 +1,33 @@
+name: Hata bildirimi
+description: Uygulama beklendiği gibi çalışmıyor
+labels: [hata]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Gerçek isim, TCKN, IBAN, adres ya da müvekkil bilgisi paylaşmayın.** Ekran görüntülerinde ve örneklerde uydurma veri kullanın.
+  - type: textarea
+    id: ne-oldu
+    attributes:
+      label: Ne oldu?
+      description: Ne yaptınız, ne bekliyordunuz, ne oldu?
+    validations:
+      required: true
+  - type: textarea
+    id: adimlar
+    attributes:
+      label: Nasıl tekrarlanır?
+      placeholder: |
+        1. Yeni dosya → Kira
+        2. ...
+  - type: input
+    id: surum
+    attributes:
+      label: Evrakçı sürümü
+      description: Sağ üstteki tema menüsünün en altında yazar.
+      placeholder: "1.1.0"
+  - type: dropdown
+    id: windows
+    attributes:
+      label: Windows
+      options: [Windows 11, Windows 10]

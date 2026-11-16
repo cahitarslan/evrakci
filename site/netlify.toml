@@ -1,0 +1,9 @@
+# Evrakçı web sitesi: tanıtım sayfası (public/index.html) ve güncelleme dosyaları (public/guncelleme, depoda yok; tools/yayinla.ps1 doldurur).
+[build]
+  publish = "public"
+
+# Güncelleme listesi her zaman yeniden sorulsun; paketlerin adı sürümü taşıdığı için önbelleğe alınabilir.
+[[headers]]
+  for = "/guncelleme/releases.*.json"
+  [headers.values]
+    Cache-Control = "no-cache"

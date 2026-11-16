@@ -1,0 +1,108 @@
+<UserControl x:Class="Evrakci.App.Views.GenerateStepView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="24,18,24,20" MaxWidth="900" HorizontalAlignment="Stretch">
+            <TextBlock Text="Belgeleri üret" Style="{StaticResource SectionTitle}" Margin="0,0,0,16" />
+
+            <!-- Blocking errors -->
+            <Border Visibility="{Binding HasBlockingErrors, Converter={StaticResource BoolToVisibility}}" Margin="0,0,0,16"
+                    Padding="16,12" CornerRadius="8" Background="{DynamicResource SystemFillColorCriticalBackgroundBrush}">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Symbol="ErrorCircle24" Foreground="{DynamicResource SystemFillColorCriticalBrush}" Margin="0,0,8,0" />
+                        <TextBlock Text="Önce şu bilgileri tamamlayın" FontWeight="SemiBold" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding BlockingErrors}" Margin="30,8,0,8">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Margin="0,0,0,4">
+                                    <Run Text="{Binding Field, Mode=OneWay}" FontWeight="SemiBold" /><Run Text=": " /><Run Text="{Binding Message, Mode=OneWay}" />
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ui:Button Content="Forma dön" Icon="{ui:SymbolIcon ArrowLeft24}" Command="{Binding GoToFormCommand}" Margin="30,0,0,0" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="Biçim" FontWeight="SemiBold" Margin="0,0,0,6" />
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                <RadioButton GroupName="Format" Content="Word (.docx)" IsChecked="{Binding FormatWord}" Margin="0,0,20,0" />
+                <RadioButton GroupName="Format" Content="UYAP (.udf)" IsChecked="{Binding FormatUdf}" Margin="0,0,20,0" />
+                <RadioButton GroupName="Format" Content="İkisi de" IsChecked="{Binding FormatBoth}" />
+            </StackPanel>
+
+            <TextBlock Text="Klasör" FontWeight="SemiBold" Margin="0,0,0,6" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ui:TextBox Text="{Binding OutputFolder, Mode=OneWay}" IsReadOnly="True" ClearButtonEnabled="False"
+                            Icon="{ui:SymbolIcon Folder24}" />
+                <ui:Button Grid.Column="1" Margin="8,0,0,0" Content="Klasör seç…" Icon="{ui:SymbolIcon FolderOpen24}"
+                           Command="{Binding ChooseOutputFolderCommand}" />
+            </Grid>
+
+            <ui:InfoBar Margin="0,10,0,0" IsOpen="{Binding HasPlanError, Mode=OneWay}"
+                        IsClosable="False" Severity="Error" Title="Bu klasöre yazılamaz" Message="{Binding PlanError}" />
+
+            <TextBlock Text="Belgeler" FontWeight="SemiBold" Margin="0,20,0,6" />
+            <ItemsControl ItemsSource="{Binding Outputs}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="0,0,0,6" Padding="14,10" CornerRadius="6"
+                                Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Border Width="44" Margin="0,0,12,0" Padding="0,2" CornerRadius="4" VerticalAlignment="Center"
+                                        Background="{DynamicResource SubtleFillColorSecondaryBrush}">
+                                    <TextBlock Text="{Binding FormatLabel}" FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource AccentTextFillColorPrimaryBrush}" />
+                                </Border>
+                                <TextBlock Grid.Column="1" Text="{Binding FileName}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"
+                                           ToolTip="{Binding Path}" />
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border Margin="10,0" Padding="8,2" CornerRadius="4"
+                                            Background="{DynamicResource SystemFillColorCautionBackgroundBrush}"
+                                            Visibility="{Binding WillOverwrite, Converter={StaticResource BoolToVisibility}}"
+                                            ToolTip="Bu adda bir dosya zaten var; üretirken üzerine yazmak için onay istenecek.">
+                                        <TextBlock Text="dosya var" FontSize="14" Foreground="{DynamicResource SystemFillColorCautionBrush}" />
+                                    </Border>
+                                    <Border Margin="10,0" Padding="8,2" CornerRadius="4"
+                                            Background="{DynamicResource SystemFillColorSuccessBackgroundBrush}"
+                                            Visibility="{Binding Written, Converter={StaticResource BoolToVisibility}}">
+                                        <TextBlock Text="kaydedildi" FontSize="14" Foreground="{DynamicResource SystemFillColorSuccessBrush}" />
+                                    </Border>
+                                </StackPanel>
+                                <ui:Button Grid.Column="3" Content="Aç" Icon="{ui:SymbolIcon Open24}" Padding="10,4"
+                                           Command="{Binding DataContext.OpenOutputCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                           CommandParameter="{Binding}"
+                                           Visibility="{Binding Exists, Converter={StaticResource BoolToVisibility}}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                <ui:Button Appearance="Primary" Padding="20,10" FontSize="15" Icon="{ui:SymbolIcon DocumentArrowRight24}"
+                           Content="Belgeleri üret" Command="{Binding GenerateCommand}" />
+                <ui:Button Margin="10,0,0,0" Padding="14,10" Icon="{ui:SymbolIcon Folder24}" Content="Klasörü aç"
+                           Command="{Binding OpenOutputFolderCommand}"
+                           Visibility="{Binding Generated, Converter={StaticResource BoolToVisibility}}" />
+            </StackPanel>
+
+            <ui:InfoBar Margin="0,14,0,0" IsOpen="{Binding Generated}" IsClosable="False" Severity="Success"
+                        Title="Tamamlandı" Message="{Binding GenerateMessage}" />
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
