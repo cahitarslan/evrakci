@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Evrakçı · Arabuluculuk evrakı tek formdan, Word ve UYAP biçiminde</title>
-<meta name="description" content="Evrakçı, arabuluculuk dosyanızın davet mektubundan son tutanağına kadar bütün evrakını tek formdan Word (.docx) ve UYAP (.udf) biçiminde hazırlar. Türkçe ekler, yazıyla tutarlar, TCKN ve IBAN kontrolü. 14 gün ücretsiz, kart gerekmez.">
+<meta name="description" content="Evrakçı, arabuluculuk dosyanızın davet mektubundan son tutanağına kadar bütün evrakını tek formdan Word (.docx) ve UYAP (.udf) biçiminde hazırlar. Türkçe ekler, yazıyla tutarlar, TCKN ve IBAN kontrolü. Ücretsiz ve açık kaynak.">
 <link rel="canonical" href="https://evrakci.netlify.app/">
 <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16131D" media="(prefers-color-scheme: dark)">
@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="Evrakçı">
 <meta property="og:url" content="https://evrakci.netlify.app/">
 <meta property="og:title" content="Evrakçı · Arabuluculuk dosyanızın bütün evrakı, tek formdan">
-<meta property="og:description" content="Davet mektubundan son tutanağa kadar bütün belgeler Word ve UYAP (.udf) biçiminde. Bilgileriniz bilgisayarınızdan çıkmaz. 14 gün ücretsiz.">
+<meta property="og:description" content="Davet mektubundan son tutanağa kadar bütün belgeler Word ve UYAP (.udf) biçiminde. Bilgileriniz bilgisayarınızdan çıkmaz. Ücretsiz ve açık kaynak.">
 <meta property="og:image" content="https://evrakci.netlify.app/gorsel/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Evrakçı logosu ve önizleme ekranında sarı işaretli değerlerle bir anlaşma belgesi">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Evrakçı · Arabuluculuk evrakı tek formdan">
-<meta name="twitter:description" content="Bütün tutanaklar tek formdan, Word ve UYAP biçiminde. 14 gün ücretsiz.">
+<meta name="twitter:description" content="Bütün tutanaklar tek formdan, Word ve UYAP biçiminde. Ücretsiz ve açık kaynak.">
 <meta name="twitter:image" content="https://evrakci.netlify.app/gorsel/og.png">
 <link rel="preload" href="/yazi/plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/yazi/plex-serif-600.woff2" as="font" type="font/woff2" crossorigin>
@@ -39,10 +39,10 @@
   "downloadUrl": "https://evrakci.netlify.app/guncelleme/Evrakci-win-Setup.exe",
   "image": "https://evrakci.netlify.app/gorsel/og.png",
   "description": "Arabulucuların bir dosyanın bütün evrakını tek formdan Word (.docx) ve UYAP (.udf) biçiminde hazırladığı Windows uygulaması.",
-  "offers": [
-    {"@type": "Offer", "name": "Aylık", "price": "299", "priceCurrency": "TRY"},
-    {"@type": "Offer", "name": "Yıllık", "price": "2990", "priceCurrency": "TRY"}
-  ]
+  "isAccessibleForFree": true,
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "sameAs": "https://github.com/cahitarslan/evrakci",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}
 }
 </script>
 <style>
@@ -272,9 +272,10 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
   <nav class="menu" aria-label="Sayfa içi">
     <a class="ikincil" href="#nasil">Nasıl çalışır</a>
     <a class="ikincil" href="#gizlilik">Gizlilik</a>
-    <a class="ikincil" href="#fiyat">Fiyat</a>
+    <a class="ikincil" href="#acik-kaynak">Açık kaynak</a>
     <a class="ikincil" href="#sss">Sorular</a>
-    <a class="dugme ana kisa" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+    <a class="ikincil" href="https://github.com/cahitarslan/evrakci">GitHub</a>
+    <a class="dugme ana kisa" href="guncelleme/Evrakci-win-Setup.exe">Ücretsiz indir</a>
   </nav>
 </header>
 
@@ -284,10 +285,10 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
   <div class="yan">
     <p class="giris">Tarafları, tutarları, tarihleri bir kez yazarsınız. Evrakçı davet mektubundan son tutanağa kadar seçtiğiniz bütün belgeleri doldurur; Türkçe ekleri doğru çeker, tutarları yazıyla yazar, Word ve UYAP (.udf) biçiminde kaydeder.</p>
     <div class="eylem">
-      <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+      <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">Ücretsiz indir</a>
       <a class="dugme ikinci" href="#video">Tanıtım videosunu izle (1,5 dk)</a>
     </div>
-    <p class="guvence">Kart bilgisi istenmez. Deneme 14 gün ya da 3 dosya sürer. Windows 10 ve 11 için, kurulum dosyası 71 MB.</p>
+    <p class="guvence">Ücretsiz ve açık kaynak: kayıt, deneme süresi ya da lisans yok. Windows 10 ve 11 için, kurulum dosyası 71 MB. Kaynak kodu <a href="https://github.com/cahitarslan/evrakci">GitHub’da</a>.</p>
   </div>
   <figure>
     <div class="pencere">
@@ -304,7 +305,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
   <div><dt>9 arabuluculuk türü</dt><dd>İşçi–işverenden kira ve ticariye hazır setler</dd></div>
   <div><dt>Her türde 7 belge</dt><dd>Davet, bilgilendirme, anlaşma, son tutanaklar</dd></div>
   <div><dt>Word ve UYAP</dt><dd>.docx ve .udf, ikisi birden tek tıkla</dd></div>
-  <div><dt>İnternetsiz üretim</dt><dd>Bilgiler bilgisayarınızdan çıkmaz</dd></div>
+  <div><dt>Ücretsiz, açık kaynak</dt><dd>Bilgiler bilgisayarınızdan çıkmaz</dd></div>
 </dl>
 
 <section class="ic" id="sorun" aria-labelledby="sorun-b">
@@ -373,7 +374,6 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
         <tbody>
           <tr><th scope="row">Kazanılan süre</th><td id="tAySaat">7,5 saat</td><td id="tYilSaat">90 saat</td></tr>
           <tr><th scope="row">O sürenin değeri</th><td id="tAyDeger">3.750 TL</td><td id="tYilDeger">45.000 TL</td></tr>
-          <tr><th scope="row">Evrakçı lisansı</th><td>299 TL</td><td>2.990 TL</td></tr>
         </tbody>
       </table>
       <p class="kucuk" style="margin-top:14px">Hesap: dosya sayısı × (elle süre − Evrakçı ile süre). Yıllık rakam 12 ay üzerinden. Gerçek süreniz belge sayısına, yazma hızınıza ve dosyanın karmaşıklığına göre değişir.</p>
@@ -429,7 +429,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
     <h2 id="ozellik-b">Belgeyi doğru yazan ayrıntılar</h2>
   </div>
   <div class="ozellik">
-    <div><h3>Türkçe ek uyumu</h3><p>Kesme işaretli ekler değere göre yeniden yazılır: CAHİT ARSLAN’ın, YALÇINKAYA’ya, TL’nin, 2026’da.</p></div>
+    <div><h3>Türkçe ek uyumu</h3><p>Kesme işaretli ekler değere göre yeniden yazılır: AYŞE YILMAZ’ın, ALİ KAYA’ya, TL’nin, 2026’da.</p></div>
     <div><h3>Tutarlar yazıyla</h3><p>Para alanları rakamla ve yazıyla aynı anda yazılır; kuruşlar dahil.</p></div>
     <div><h3>TCKN ve IBAN kontrolü</h3><p>Kontrol hanesi tutmayan bir kimlik ya da IBAN numarası girildiğinde alan hemen uyarır.</p></div>
     <div><h3>Dosya kontrolleri</h3><p>Taksitlerin toplamı anlaşma tutarını tutmazsa ya da tarihler sırasız girilirse belge üretilmez.</p></div>
@@ -465,76 +465,77 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
     <div class="kutu">
       <h3>İnternete gidenler</h3>
       <ul>
-        <li><b>Lisans kontrolü:</b> yalnızca lisans numarası, bilgisayar kodu ve uygulama sürümü; ayda bir kez.</li>
-        <li><b>Güncelleme:</b> yeni sürüm olup olmadığı sorulur, varsa indirilir.</li>
-        <li>Bunların dışında hiçbir bilgi gönderilmez. Bu site de çerez ya da ziyaretçi takibi kullanmaz.</li>
+        <li><b>Güncelleme:</b> yeni sürüm olup olmadığı sorulur, varsa indirilir. Sizinle ilgili hiçbir bilgi gönderilmez.</li>
+        <li>Bunun dışında uygulama internete bağlanmaz. Lisans, hesap ya da kayıt yoktur.</li>
+        <li>Kaynak kodu açık olduğu için bu söylediklerimizi <a href="https://github.com/cahitarslan/evrakci">kodda kendiniz doğrulayabilirsiniz</a>. Bu site de çerez ya da ziyaretçi takibi kullanmaz.</li>
       </ul>
     </div>
   </div>
 </section>
 
-<section class="ic" id="fiyat" aria-labelledby="fiyat-b">
+<section class="ic" id="acik-kaynak" aria-labelledby="acik-kaynak-b">
   <div class="baslik">
-    <h2 id="fiyat-b">Önce deneyin, sonra karar verin</h2>
-    <p class="giris">Deneme için kart ya da kayıt istenmez. Uygulamayı indirip hemen kullanmaya başlarsınız.</p>
+    <h2 id="acik-kaynak-b">Ücretsiz ve açık kaynak</h2>
+    <p class="giris">Evrakçı herkesin kullanabileceği, kodu açık bir araç. Deneme süresi, lisans ya da gizli ücret yok; bütün özellikler herkese açık.</p>
   </div>
   <div class="fiyatlar">
-    <div class="plan">
-      <h3>Ücretsiz deneme</h3>
+    <div class="plan one">
+      <h3>Kullanın</h3>
       <p class="tutar">0 TL</p>
       <ul>
-        <li>14 gün içinde 3 dosya</li>
-        <li>Bütün türler ve belgeler, Word ve UYAP</li>
-        <li>Kart, kayıt ya da e-posta istenmez</li>
+        <li>Sınırsız dosya ve belge</li>
+        <li>Bütün türler, Word ve UYAP</li>
+        <li>Kayıt, kart ya da e-posta istenmez</li>
+        <li>Güncellemeler kendiliğinden gelir</li>
       </ul>
-      <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a>
+      <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">Ücretsiz indir</a>
     </div>
     <div class="plan">
-      <h3>Aylık</h3>
-      <p class="tutar">299 TL <small>/ ay</small></p>
+      <h3>İnceleyin</h3>
+      <p class="tutar">AGPL-3.0</p>
       <ul>
-        <li>Sınırsız dosya ve belge</li>
-        <li>Bütün güncellemeler</li>
-        <li>E-postayla destek</li>
+        <li>Bütün kaynak kodu GitHub’da</li>
+        <li>Verilerinizin nereye gittiğini kodda görün</li>
+        <li>İsterseniz kendiniz derleyin</li>
+        <li>Değiştirip dağıtan da kodu açık tutar</li>
       </ul>
-      <a class="dugme ikinci" href="#iletisim" data-plan="Aylık (299 TL)">Aylık planı satın al</a>
+      <a class="dugme ikinci" href="https://github.com/cahitarslan/evrakci">Kaynak kodu</a>
     </div>
-    <div class="plan one">
-      <span class="muhur" aria-hidden="true">2 ay<br>bedava</span>
-      <h3>Yıllık</h3>
-      <p class="tutar">2.990 TL <small>/ yıl</small></p>
+    <div class="plan">
+      <h3>Katkı verin</h3>
+      <p class="tutar">Birlikte</p>
       <ul>
-        <li>Aylık planın her şeyi</li>
-        <li>12 ay, 10 aylık fiyatına</li>
-        <li>Ayda yaklaşık 249 TL’ye denk gelir</li>
+        <li>Şablon metinleri için öneri</li>
+        <li>Yeni arabuluculuk türü ya da belge</li>
+        <li>Hata bildirimi</li>
+        <li>Kod katkısı</li>
       </ul>
-      <a class="dugme ikinci" href="#iletisim" data-plan="Yıllık (2.990 TL)">Yıllık planı satın al</a>
+      <a class="dugme ikinci" href="https://github.com/cahitarslan/evrakci/issues/new/choose">Öneri ya da hata bildir</a>
     </div>
   </div>
-  <p class="kucuk" style="margin-top:22px">Çevrim içi ödeme henüz açık değil. Satın almak için aşağıdaki formu gönderin; ödeme bilgilerini e-postayla iletiyoruz, ödemeden sonra lisans numaranız e-postanıza gelir. Bir lisans bir bilgisayarda kullanılır.</p>
 </section>
 
 <section class="ic" id="sss" aria-labelledby="sss-b">
   <div class="baslik"><h2 id="sss-b">Sık sorulanlar</h2></div>
   <div class="sss">
-    <details><summary>Deneme bitince dosyalarıma ne olur?</summary><div><p>Hiçbir şey silinmez. Dosyalarınızı açabilir, görüntüleyebilir ve dışa aktarabilirsiniz; yalnızca yeni belge üretimi lisans gerektirir. Deneme bittikten sonra da son dosyalarınızı 14 gün dolana kadar düzeltip yeniden üretebilirsiniz.</p></div></details>
-    <details><summary>Deneme hakkı nasıl sayılıyor?</summary><div><p>“Dosya”, ilk tarafın adı ve türüdür (ör. “AYŞE YILMAZ – Kira”). Aynı dosyanın belgelerini yeniden üretmek hak harcamaz. 14 gün ya da 3 dosyadan hangisi önce dolarsa deneme biter.</p></div></details>
-    <details><summary>Üretilen .udf dosyaları UYAP’ta açılıyor mu?</summary><div><p>Evet. Dosyalar UYAP Doküman Editörü’nün kullandığı yapıda yazılır; Kira setinin yedi belgesinden üretilen dosyaların editörde açıldığı denendi. UDF biçiminin resmî bir belgesi olmadığından, editörün yeni sürümlerinde bir sorun görürseniz bize yazın. Evrakçı’nın Adalet Bakanlığı ya da UYAP ile bir bağlantısı yoktur.</p></div></details>
+    <details><summary>Gerçekten ücretsiz mi? Bir sınırı var mı?</summary><div><p>Evet, tamamen ücretsiz. Dosya, belge ya da süre sınırı yoktur; kayıt ya da lisans istenmez. Evrakçı AGPL-3.0 lisansıyla açık kaynak olarak yayımlanır.</p></div></details>
+    <details><summary>Açık kaynak olması benim için ne anlama geliyor?</summary><div><p>Uygulamanın bütün kodu GitHub’da herkese açıktır. Müvekkil bilgilerinin bilgisayarınızdan çıkmadığını isteyen herkes kodda doğrulayabilir. Proje bir gün durursa bile kod ortada kalır; başkası sürdürebilir.</p></div></details>
+    <details><summary>Üretilen .udf dosyaları UYAP’ta açılıyor mu?</summary><div><p>Evet. Dosyalar UYAP Doküman Editörü’nün kullandığı yapıda yazılır; Kira setinin yedi belgesinden üretilen dosyaların editörde açıldığı denendi. UDF biçiminin resmî bir belgesi olmadığından, editörün yeni sürümlerinde bir sorun görürseniz bize bildirin. Evrakçı’nın Adalet Bakanlığı ya da UYAP ile bir bağlantısı yoktur.</p></div></details>
     <details><summary>Hazır metinleri olduğu gibi kullanabilir miyim?</summary><div><p>Hazır metinler 6325 sayılı Kanun ve Arabuluculuk Yönetmeliği esas alınarak hazırlanmış genel taslaklardır. Kendi uygulamanıza göre gözden geçirmenizi öneririz; her metni uygulamanın içinde ya da Word’de değiştirebilir, değişikliği bütün yeni dosyalarda kullanabilirsiniz.</p></div></details>
     <details><summary>Kendi Word şablonlarımı kullanabilir miyim?</summary><div><p>Evet. Kendi belgenizi sete ekleyip içindeki adları, tarihleri ve tutarları seçerek değişkene çevirebilirsiniz. Doldurulmuş eski bir belgeden şablon yapmak da bu şekilde olur.</p></div></details>
-    <details><summary>İnternet bağlantısı gerekiyor mu?</summary><div><p>Belge üretmek için gerekmez. Uygulama lisansı ayda bir kontrol etmek ve güncellemeleri almak için internete bağlanır; bağlantı yokken çalışmaya devam eder.</p></div></details>
+    <details><summary>İnternet bağlantısı gerekiyor mu?</summary><div><p>Hayır. Belgeler internetsiz üretilir. Uygulama yalnızca yeni sürüm olup olmadığına bakmak için bağlanır; bağlantı yokken de her şey çalışır.</p></div></details>
     <details><summary>Kurulumda Windows “bilinmeyen yayımcı” uyarısı gösteriyor.</summary><div><p>Kurulum dosyası henüz kod imzalama sertifikasıyla imzalanmadığı için Windows SmartScreen bu uyarıyı gösterebilir. “Ek bilgi”ye, ardından “Yine de çalıştır”a tıklayarak kurabilirsiniz. Kurulum yönetici izni istemez ve yalnızca sizin kullanıcınıza yapılır.</p></div></details>
-    <details><summary>Mac ya da Linux sürümü var mı?</summary><div><p>Şimdilik yalnızca Windows 10 ve Windows 11 için.</p></div></details>
-    <details><summary>Bilgisayarımı değiştirirsem lisansım ne olur?</summary><div><p>Bir lisans bir bilgisayarda çalışır. Bilgisayar değiştirdiğinizde bize yazmanız yeterli; lisansınızı yeni bilgisayara aktarırız. Dosyalarınızı da dışa aktarıp yeni bilgisayarda içe aktarabilirsiniz.</p></div></details>
-    <details><summary>Fatura alabilir miyim?</summary><div><p>Evet, ödemeniz için fatura düzenlenir. Fatura bilgilerinizi satın alma formunun mesaj kısmına yazabilirsiniz.</p></div></details>
+    <details><summary>Mac ya da Linux sürümü var mı?</summary><div><p>Şimdilik yalnızca Windows 10 ve Windows 11 için. Kod açık olduğu için başka platformlara taşıma katkılarına açığız.</p></div></details>
+    <details><summary>Bilgisayarımı değiştirirsem dosyalarım ne olur?</summary><div><p>Dosyalarınızı ⋯ menüsünden dışa aktarıp (isterseniz şifreyle) yeni bilgisayarda “İçe aktar” ile açabilirsiniz. Uygulamayı yeni bilgisayara kurmak için hiçbir şey gerekmez.</p></div></details>
+    <details><summary>Bir hata buldum ya da şablon önerim var.</summary><div><p><a href="https://github.com/cahitarslan/evrakci/issues/new/choose">GitHub’da bildirin</a> ya da aşağıdaki formu kullanın. Lütfen gerçek müvekkil bilgisi, TCKN ya da IBAN paylaşmayın; örneklerde uydurma bilgiler kullanın.</p></div></details>
   </div>
 </section>
 
 <section class="ic" id="iletisim" aria-labelledby="iletisim-b">
   <div class="iletisim">
     <div>
-      <h2 id="iletisim-b">Satın alma ve sorular</h2>
-      <p class="giris" style="margin-top:14px">Formu gönderin, en kısa sürede e-postayla dönelim. Satın almak istiyorsanız ödeme bilgilerini iletiriz; ödemeden sonra lisans numaranız e-postanıza gelir.</p>
+      <h2 id="iletisim-b">Sorular ve öneriler</h2>
+      <p class="giris" style="margin-top:14px">Formu gönderin, en kısa sürede e-postayla dönelim. Hata bildirimi ve şablon önerileri için <a href="https://github.com/cahitarslan/evrakci/issues">GitHub</a> da kullanabilirsiniz.</p>
       <p>Doğrudan yazmak isterseniz:<br><a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
     </div>
     <form class="form" name="iletisim" method="POST" action="/tesekkurler.html" data-netlify="true" netlify-honeypot="bot-field">
@@ -548,13 +549,13 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
         <div><label for="telefon">Telefon (isteğe bağlı)</label><input id="telefon" name="telefon" type="tel" autocomplete="tel"></div>
         <div><label for="plan">Konu</label>
           <select id="plan" name="plan">
-            <option>Yıllık (2.990 TL)</option>
-            <option>Aylık (299 TL)</option>
             <option selected>Soru ya da bilgi</option>
+            <option>Şablon önerisi</option>
+            <option>Hata bildirimi</option>
           </select></div>
       </div>
-      <div><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" placeholder="Fatura bilgileri ya da sorunuz"></textarea></div>
-      <p class="kucuk" style="margin:0">Bu bilgileri yalnızca size dönüş yapmak ve lisansınızı göndermek için kullanırız.</p>
+      <div><label for="mesaj">Mesajınız</label><textarea id="mesaj" name="mesaj" placeholder="Sorunuz ya da öneriniz (gerçek müvekkil bilgisi yazmayın)"></textarea></div>
+      <p class="kucuk" style="margin:0">Bu bilgileri yalnızca size dönüş yapmak için kullanırız.</p>
       <div><button class="dugme ana" type="submit">Gönder</button></div>
     </form>
   </div>
@@ -562,13 +563,13 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
 
 <div class="son ic">
   <h2>Bir sonraki dosyanızı Evrakçı ile hazırlayın.</h2>
-  <p class="giris" style="margin-top:14px">14 gün ya da 3 dosya boyunca ücretsiz; kart bilgisi istenmez.</p>
-  <div class="eylem"><a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">14 gün ücretsiz dene</a></div>
+  <p class="giris" style="margin-top:14px">Ücretsiz ve açık kaynak; kayıt ya da lisans istenmez.</p>
+  <div class="eylem"><a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">Ücretsiz indir</a><a class="dugme ikinci" href="https://github.com/cahitarslan/evrakci">GitHub’da incele</a></div>
 </div>
 </main>
 
 <footer class="alt ic">
-  <p>Evrakçı · Arabuluculuk evrakı. İletişim: <a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
+  <p>Evrakçı · Arabuluculuk evrakı. Açık kaynak, <a href="https://github.com/cahitarslan/evrakci/blob/main/LICENSE">AGPL-3.0</a> · <a href="https://github.com/cahitarslan/evrakci">GitHub</a> · İletişim: <a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
   <p>UYAP, T.C. Adalet Bakanlığı’nın bilişim sistemidir; Evrakçı’nın Adalet Bakanlığı ile bir bağlantısı yoktur. Microsoft Word, Microsoft Corporation’ın markasıdır.</p>
 </footer>
 </div>
@@ -586,20 +587,6 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
     if (!azHareket) { var p = v.play(); if (p && p.catch) p.catch(guncelle); }
     guncelle();
   }
-
-  // Purchase buttons pre-select the plan in the contact form.
-  var sec = document.getElementById('plan');
-  function planSec(ad) {
-    for (var i = 0; i < sec.options.length; i++) if (sec.options[i].text === ad) sec.selectedIndex = i;
-  }
-  document.querySelectorAll('[data-plan]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      planSec(a.getAttribute('data-plan'));
-      setTimeout(function () { document.getElementById('ad').focus({ preventScroll: true }); }, azHareket ? 0 : 450);
-    });
-  });
-  var q = new URLSearchParams(location.search).get('plan');
-  if (q === 'yillik') planSec('Yıllık (2.990 TL)'); else if (q === 'aylik') planSec('Aylık (299 TL)');
 
   // Time calculator.
   var sayi = new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 1 });
