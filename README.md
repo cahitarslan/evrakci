@@ -63,7 +63,7 @@ Kütüphane `Belgelerim\Evrakçı\Şablonlar` klasöründedir ve iki bölümden 
 | `Hazır Şablonlar` | Programla gelen setler. İlk açılışta buraya kopyalanır. Kullanıcı bunları değiştirebilir; "Orijinaline döndür" ilk hâline getirir. Değiştirilmemiş bir hazır set, yeni sürümle gelen şablonlarla kendiliğinden güncellenir. |
 | `Setlerim` | Kullanıcının setleri. "Kopyasını oluştur" ya da "Yeni set" ile oluşur; yeniden adlandırılabilir ve silinebilir (silinen set Geri Dönüşüm Kutusu'na gider). |
 
-Hazır setler (dava şartı olanların her biri 7 belge içerir):
+Hazır setler (dava şartı olanların her biri 7 şablon içerir; bir dosyada bunlardan yalnızca gerekenler hazırlanır, ör. son tutanağın üç çeşidinden biri):
 
 | Tür | Dayanak |
 |---|---|
@@ -156,7 +156,7 @@ Bir kontrol tutmazsa ya da bir değer eksik veya geçersizse (TCKN, IBAN vb.) be
 
 ## UDF desteği
 
-`.udf` (UYAP Doküman Editörü) dosyaları okunup yazılabilir. Bu formatın resmî bir belgesi yoktur; uygulama, editörün ürettiği yapıya göre yazıldı: ZIP içindeki `content.xml`, tek CDATA metni ve `startOffset`/`length` öğeleri. Biçim, açık kaynak [UDF-Toolkit](https://github.com/ataetgi/UDF-Toolkit) belgeleriyle karşılaştırıldı (format_id 1.8, `paragraph` / `content` / `tab` / `table` öğeleri) ve bütün hazır şablonların UDF'e dönüşüp geri okunduğu test edildi. Kira setinin 7 belgesinden üretilen UDF dosyalarının gerçek UYAP editöründe açıldığı doğrulandı (3 Kasım 2026). Editör yazı boyutlarını ve sütun genişliklerini tamsayı bekler (`size="12"`; `12.0` yazılırsa dosya açılmaz).
+`.udf` (UYAP Doküman Editörü) dosyaları okunup yazılabilir. Bu formatın resmî bir belgesi yoktur; uygulama, editörün ürettiği yapıya göre yazıldı: ZIP içindeki `content.xml`, tek CDATA metni ve `startOffset`/`length` öğeleri. Biçim, açık kaynak [UDF-Toolkit](https://github.com/ataetgi/UDF-Toolkit) belgeleriyle karşılaştırıldı (format_id 1.8, `paragraph` / `content` / `tab` / `table` öğeleri) ve bütün hazır şablonların UDF'e dönüşüp geri okunduğu test edildi. Kira setinin 7 şablonundan üretilen UDF dosyalarının gerçek UYAP editöründe açıldığı doğrulandı (3 Kasım 2026). Editör yazı boyutlarını ve sütun genişliklerini tamsayı bekler (`size="12"`; `12.0` yazılırsa dosya açılmaz).
 
 ## Görünüm
 

@@ -303,7 +303,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
 
 <dl class="olgular ic">
   <div><dt>9 arabuluculuk türü</dt><dd>İşçi–işverenden kira ve ticariye hazır setler</dd></div>
-  <div><dt>Her türde 7 belge</dt><dd>Davet, bilgilendirme, anlaşma, son tutanaklar</dd></div>
+  <div><dt>Her türde 7 şablon</dt><dd>Davet, bilgilendirme, anlaşma ve üç çeşit son tutanak</dd></div>
   <div><dt>Word ve UYAP</dt><dd>.docx ve .udf, ikisi birden tek tıkla</dd></div>
   <div><dt>Ücretsiz, açık kaynak</dt><dd>Bilgiler bilgisayarınızdan çıkmaz</dd></div>
 </dl>
@@ -312,7 +312,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
   <div class="duzeltme">
     <div>
       <div class="baslik">
-        <h2 id="sorun-b">Aynı bilgileri yedi belgeye ayrı ayrı yazmak hem zaman alır hem hata bırakır.</h2>
+        <h2 id="sorun-b">Aynı bilgileri dört belgeye ayrı ayrı yazmak hem zaman alır hem hata bırakır.</h2>
         <p class="giris">Bir dosyanın evrakını elle hazırlamak genellikle 30 ile 45 dakika sürüyor. O sürenin önemli bir kısmı yazmaya değil, aynı bilginin her belgede doğru geçtiğini kontrol etmeye gidiyor.</p>
       </div>
       <ul class="liste">
@@ -393,7 +393,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
     </li>
     <li class="adim">
       <div><h3>Hazırlanacak tutanakları işaretleyin</h3><p>Anlaşma varsa anlaşma belgesi ve son tutanak, yoksa anlaşamama tutanağı. Form yalnızca işaretlediğiniz belgelerde geçen bilgileri sorar.</p></div>
-      <figure class="ekran"><img src="gorsel/tutanaklar.webp" alt="Hazırlanacak tutanaklar ekranı: yedi belge onay kutularıyla listelenmiş, üçü seçili" width="1440" height="765" loading="lazy" decoding="async"></figure>
+      <figure class="ekran"><img src="gorsel/tutanaklar.webp" alt="Hazırlanacak tutanaklar ekranı: yedi şablon onay kutularıyla listelenmiş, üçü seçili" width="1440" height="765" loading="lazy" decoding="async"></figure>
     </li>
     <li class="adim">
       <div><h3>Bilgileri bir kez yazın</h3><p>Değer girerken alanın altında belgeye nasıl yazılacağını görürsünüz: <q>64.000,00 TL · Altmış Dört Bin Türk Lirası</q>. Boş bıraktığınız satırlar belgeden çıkarılır.</p></div>
@@ -441,7 +441,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
   </div>
   <div class="iki">
     <figure><div class="ekran"><img src="gorsel/dogrulama.webp" alt="Formda T.C. kimlik numarası ve IBAN alanlarının altında kırmızı kontrol hanesi uyarıları" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Kontrol hanesi tutmayan TCKN ve IBAN anında işaretlenir.</figcaption></figure>
-    <figure><div class="ekran"><img src="gorsel/sablonlar.webp" alt="Şablonlar ekranı: arabuluculuk türlerine göre hazır setler ve Tüketici setinin yedi belgesi" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Hazır setler türe göre gruplanır; her belge düzenlenebilir.</figcaption></figure>
+    <figure><div class="ekran"><img src="gorsel/sablonlar.webp" alt="Şablonlar ekranı: arabuluculuk türlerine göre hazır setler ve Tüketici setinin yedi şablonu" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Hazır setler türe göre gruplanır; her belge düzenlenebilir.</figcaption></figure>
     <figure><div class="ekran"><img src="gorsel/dosyalarim.webp" alt="Dosyalarım ekranı: dört örnek arabuluculuk dosyası, tür ve durumlarıyla" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Her dosya ilk tarafın adıyla listelenir; arama kutusuyla bulunur.</figcaption></figure>
     <figure><div class="ekran"><img src="gorsel/koyu-onizleme.webp" alt="Koyu temada önizleme ekranı; belge sayfası beyaz kalıyor" width="1440" height="765" loading="lazy" decoding="async"></div><figcaption>Koyu tema; belge sayfaları her temada beyaz kalır.</figcaption></figure>
   </div>
@@ -520,7 +520,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
   <div class="sss">
     <details><summary>Gerçekten ücretsiz mi? Bir sınırı var mı?</summary><div><p>Evet, tamamen ücretsiz. Dosya, belge ya da süre sınırı yoktur; kayıt ya da lisans istenmez. Evrakçı AGPL-3.0 lisansıyla açık kaynak olarak yayımlanır.</p></div></details>
     <details><summary>Açık kaynak olması benim için ne anlama geliyor?</summary><div><p>Uygulamanın bütün kodu GitHub’da herkese açıktır. Müvekkil bilgilerinin bilgisayarınızdan çıkmadığını isteyen herkes kodda doğrulayabilir. Proje bir gün durursa bile kod ortada kalır; başkası sürdürebilir.</p></div></details>
-    <details><summary>Üretilen .udf dosyaları UYAP’ta açılıyor mu?</summary><div><p>Evet. Dosyalar UYAP Doküman Editörü’nün kullandığı yapıda yazılır; Kira setinin yedi belgesinden üretilen dosyaların editörde açıldığı denendi. UDF biçiminin resmî bir belgesi olmadığından, editörün yeni sürümlerinde bir sorun görürseniz bize bildirin. Evrakçı’nın Adalet Bakanlığı ya da UYAP ile bir bağlantısı yoktur.</p></div></details>
+    <details><summary>Üretilen .udf dosyaları UYAP’ta açılıyor mu?</summary><div><p>Evet. Dosyalar UYAP Doküman Editörü’nün kullandığı yapıda yazılır; Kira setinin yedi şablonundan üretilen dosyaların editörde açıldığı denendi. UDF biçiminin resmî bir belgesi olmadığından, editörün yeni sürümlerinde bir sorun görürseniz bize bildirin. Evrakçı’nın Adalet Bakanlığı ya da UYAP ile bir bağlantısı yoktur.</p></div></details>
     <details><summary>Hazır metinleri olduğu gibi kullanabilir miyim?</summary><div><p>Hazır metinler 6325 sayılı Kanun ve Arabuluculuk Yönetmeliği esas alınarak hazırlanmış genel taslaklardır. Kendi uygulamanıza göre gözden geçirmenizi öneririz; her metni uygulamanın içinde ya da Word’de değiştirebilir, değişikliği bütün yeni dosyalarda kullanabilirsiniz.</p></div></details>
     <details><summary>Kendi Word şablonlarımı kullanabilir miyim?</summary><div><p>Evet. Kendi belgenizi sete ekleyip içindeki adları, tarihleri ve tutarları seçerek değişkene çevirebilirsiniz. Doldurulmuş eski bir belgeden şablon yapmak da bu şekilde olur.</p></div></details>
     <details><summary>İnternet bağlantısı gerekiyor mu?</summary><div><p>Hayır. Belgeler internetsiz üretilir. Uygulama yalnızca yeni sürüm olup olmadığına bakmak için bağlanır; bağlantı yokken de her şey çalışır.</p></div></details>
