@@ -7,7 +7,7 @@
 # Bir kez kurulmalı: dotnet tool install -g vpk --version 1.2.161  (Velopack paketiyle aynı sürüm)
 #                    cd site; npm install; npx netlify login
 #                    gh auth login   (GitHub Releases için)
-# Releases\ klasörü silinmemeli: önceki sürüm oradayken yalnızca değişen kısmı içeren (delta) paket de üretilir.
+# Delta paket kapalı (--delta none): zstd, "Evrakçı" başlığındaki Türkçe harfli dosya adını bulamıyor; güncellemeler tam paket iner.
 # Kod imzalama sertifikası alındığında vpk pack satırına --signParams "/a /fd sha256 /tr http://timestamp.digicert.com /td sha256" eklenir.
 
 param(
@@ -28,7 +28,7 @@ if ($LASTEXITCODE -ne 0) { throw "Derleme başarısız." }
 
 vpk pack --packId Evrakci --packVersion $Surum --packDir $publish --mainExe Evrakci.exe `
     --packTitle "Evrakçı" --packAuthors "Evrakçı" --icon (Join-Path $root "Marka\evrakci.ico") `
-    --outputDir $releases
+    --outputDir $releases --delta none
 if ($LASTEXITCODE -ne 0) { throw "Paketleme başarısız." }
 Write-Host "Paket hazır: $releases"
 if ($Yukleme) { return }

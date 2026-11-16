@@ -178,7 +178,7 @@ cd site; npm install; npx netlify login; cd ..     # bir kez
 .\tools\yayinla.ps1 -Surum 1.1.1                   # paketler, evrakci.netlify.app'e ve GitHub Releases'a yükler
 ```
 
-Sürüm numarası her yayında artmalıdır. `Releases\` klasörü silinmemelidir: önceki sürüm oradayken yalnızca değişen kısmı içeren küçük paket de üretilir.
+Sürüm numarası her yayında artmalıdır. `Releases\` klasörü silinmemelidir: Velopack sürüm listesini oradan üretir. Delta paket kapalıdır (uygulama başlığındaki Türkçe harfler yüzünden), güncellemeler tam paket olarak iner.
 
 ## Geliştirme
 
