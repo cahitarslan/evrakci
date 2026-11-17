@@ -26,7 +26,7 @@ Belgeler internetsiz üretilir. Müvekkil bilgileri bilgisayardan çıkmaz, tele
 
 ## İndir
 
-- **Kurulum:** [Son sürümün](https://github.com/cahitarslan/evrakci/releases/latest) `Evrakci-win-Setup.exe` dosyası (ya da [evrakci.netlify.app](https://evrakci.netlify.app)). Yönetici izni istemez, `%LocalAppData%\Evrakci` altına kurulur ve kendiliğinden güncellenir.
+- **Kurulum:** [Evrakci-win-Setup.exe](https://github.com/cahitarslan/evrakci/releases/latest/download/Evrakci-win-Setup.exe) (her zaman son sürüm; [sürüm sayfası](https://github.com/cahitarslan/evrakci/releases/latest), [evrakci.netlify.app](https://evrakci.netlify.app)). Yönetici izni istemez, `%LocalAppData%\Evrakci` altına kurulur ve kendiliğinden güncellenir.
 - **Taşınabilir:** Aynı sayfadaki `Evrakci-win-Portable.zip` kurulum gerektirmez.
 - Kurulum dosyası henüz kod imzalı değildir. Chrome indirmeyi engellerse Ctrl+J ile İndirilenler'i açıp dosyanın menüsünden **Yine de sakla**'yı seçin; Windows SmartScreen uyarı verirse **Ek bilgi → Yine de çalıştır**. İsterseniz kaynak koddan kendiniz derleyebilirsiniz (bkz. *Geliştirme*).
 
