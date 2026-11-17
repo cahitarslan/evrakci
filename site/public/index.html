@@ -117,6 +117,7 @@ p { margin: 0 0 1em; max-width: 64ch; }
 .kahraman h1 { margin-bottom: 0; }
 .eylem { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 14px; }
 .guvence { font-size: 15px; color: var(--kursun); margin: 0; }
+.not-indirme { margin-top: 8px; font-size: 14px; }
 .pencere { border: 1px solid var(--cizgi); border-radius: 8px; overflow: hidden; background: var(--yumusak); box-shadow: 0 18px 50px -24px rgba(26, 26, 34, .35); position: relative; }
 .pencere video, .pencere img { width: 100%; aspect-ratio: 1280 / 680; object-fit: cover; }
 .oynat { position: absolute; right: 10px; bottom: 10px; min-height: 36px; padding: 6px 12px; font: 500 14px var(--sans);
@@ -288,7 +289,8 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
       <a class="dugme ana" href="guncelleme/Evrakci-win-Setup.exe">Ücretsiz indir</a>
       <a class="dugme ikinci" href="#video">Tanıtım videosunu izle (1,5 dk)</a>
     </div>
-    <p class="guvence">Ücretsiz ve açık kaynak: kayıt, deneme süresi ya da lisans yok. Windows 10 ve 11 için, kurulum dosyası 71 MB. Kaynak kodu <a href="https://github.com/cahitarslan/evrakci">GitHub’da</a> · <a href="kod-imzalama.html">Code signing policy</a>.</p>
+    <p class="guvence">Ücretsiz ve açık kaynak: kayıt, deneme süresi ya da lisans yok. Windows 10 ve 11 için, kurulum dosyası 71 MB. Kaynak kodu <a href="https://github.com/cahitarslan/evrakci">GitHub’da</a>.</p>
+    <p class="guvence not-indirme">Kurulum dosyası henüz kod imzalı değil. Chrome “şüpheli indirme engellendi” derse: Ctrl+J ile İndirilenler’i açın, dosyanın yanındaki menüden “Yine de sakla”yı seçin. Windows uyarı verirse “Ek bilgi” → “Yine de çalıştır”. <a href="#sss-imza">Neden?</a></p>
   </div>
   <figure>
     <div class="pencere">
@@ -524,7 +526,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
     <details><summary>Hazır metinleri olduğu gibi kullanabilir miyim?</summary><div><p>Hazır metinler 6325 sayılı Kanun ve Arabuluculuk Yönetmeliği esas alınarak hazırlanmış genel taslaklardır. Kendi uygulamanıza göre gözden geçirmenizi öneririz; her metni uygulamanın içinde ya da Word’de değiştirebilir, değişikliği bütün yeni dosyalarda kullanabilirsiniz.</p></div></details>
     <details><summary>Kendi Word şablonlarımı kullanabilir miyim?</summary><div><p>Evet. Kendi belgenizi sete ekleyip içindeki adları, tarihleri ve tutarları seçerek değişkene çevirebilirsiniz. Doldurulmuş eski bir belgeden şablon yapmak da bu şekilde olur.</p></div></details>
     <details><summary>İnternet bağlantısı gerekiyor mu?</summary><div><p>Hayır. Belgeler internetsiz üretilir. Uygulama yalnızca yeni sürüm olup olmadığına bakmak için bağlanır; bağlantı yokken de her şey çalışır.</p></div></details>
-    <details><summary>Kurulumda Windows “bilinmeyen yayımcı” uyarısı gösteriyor.</summary><div><p>Kurulum dosyası henüz kod imzalama sertifikasıyla imzalanmadığı için Windows SmartScreen bu uyarıyı gösterebilir. “Ek bilgi”ye, ardından “Yine de çalıştır”a tıklayarak kurabilirsiniz. Kurulum yönetici izni istemez ve yalnızca sizin kullanıcınıza yapılır.</p></div></details>
+    <details id="sss-imza"><summary>Chrome indirmeyi engelliyor ya da Windows “bilinmeyen yayımcı” uyarısı veriyor.</summary><div><p>Kurulum dosyası henüz kod imzalama sertifikasıyla imzalı değil. Tarayıcılar ve Windows, imzasız ve yeni yayınlanmış programlarda bu yüzden uyarı gösterir; dosyada bir sorun olduğu anlamına gelmez.</p><p><b>Chrome:</b> Ctrl+J ile İndirilenler sayfasını açın, engellenen dosyanın yanındaki menüden “Yine de sakla”yı seçin. <b>Edge:</b> İndirilenler’de dosyanın menüsünden “Tut” → “Yine de tut”. <b>Windows SmartScreen:</b> “Ek bilgi”ye, ardından “Yine de çalıştır”a tıklayın.</p><p>Kurulum yönetici izni istemez ve yalnızca sizin kullanıcınıza yapılır. Program, herkesin görebildiği <a href="https://github.com/cahitarslan/evrakci">açık kaynak koddan</a> GitHub Actions ile derlenir; isterseniz kendiniz de derleyebilirsiniz.</p></div></details>
     <details><summary>Mac ya da Linux sürümü var mı?</summary><div><p>Şimdilik yalnızca Windows 10 ve Windows 11 için. Kod açık olduğu için başka platformlara taşıma katkılarına açığız.</p></div></details>
     <details><summary>Bilgisayarımı değiştirirsem dosyalarım ne olur?</summary><div><p>Dosyalarınızı ⋯ menüsünden dışa aktarıp (isterseniz şifreyle) yeni bilgisayarda “İçe aktar” ile açabilirsiniz. Uygulamayı yeni bilgisayara kurmak için hiçbir şey gerekmez.</p></div></details>
     <details><summary>Bir hata buldum ya da şablon önerim var.</summary><div><p><a href="https://github.com/cahitarslan/evrakci/issues/new/choose">GitHub’da bildirin</a> ya da aşağıdaki formu kullanın. Lütfen gerçek müvekkil bilgisi, TCKN ya da IBAN paylaşmayın; örneklerde uydurma bilgiler kullanın.</p></div></details>
@@ -569,8 +571,7 @@ figcaption { font-size: 14px; color: var(--kursun); margin-top: 8px; }
 </main>
 
 <footer class="alt ic">
-  <p>Evrakçı · Arabuluculuk evrakı. Açık kaynak, <a href="https://github.com/cahitarslan/evrakci/blob/main/LICENSE">AGPL-3.0</a> · <a href="https://github.com/cahitarslan/evrakci">GitHub</a> · <a href="kod-imzalama.html">Code signing policy</a> · İletişim: <a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
-  <p>Windows sürümleri için ücretsiz kod imzalama: Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a> (<a href="kod-imzalama.html">Code signing policy</a>).</p>
+  <p>Evrakçı · Arabuluculuk evrakı. Açık kaynak, <a href="https://github.com/cahitarslan/evrakci/blob/main/LICENSE">AGPL-3.0</a> · <a href="https://github.com/cahitarslan/evrakci">GitHub</a> · <a href="kod-imzalama.html">Gizlilik</a> · İletişim: <a href="mailto:contact@cahitarslan.com">contact@cahitarslan.com</a></p>
   <p>UYAP, T.C. Adalet Bakanlığı’nın bilişim sistemidir; Evrakçı’nın Adalet Bakanlığı ile bir bağlantısı yoktur. Microsoft Word, Microsoft Corporation’ın markasıdır.</p>
 </footer>
 </div>

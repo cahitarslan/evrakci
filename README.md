@@ -28,7 +28,7 @@ Belgeler internetsiz üretilir. Müvekkil bilgileri bilgisayardan çıkmaz, tele
 
 - **Kurulum:** [Son sürümün](https://github.com/cahitarslan/evrakci/releases/latest) `Evrakci-win-Setup.exe` dosyası (ya da [evrakci.netlify.app](https://evrakci.netlify.app)). Yönetici izni istemez, `%LocalAppData%\Evrakci` altına kurulur ve kendiliğinden güncellenir.
 - **Taşınabilir:** Aynı sayfadaki `Evrakci-win-Portable.zip` kurulum gerektirmez.
-- Kurulum dosyası henüz kod imzalı değildir; Windows SmartScreen "tanınmayan uygulama" uyarısı verebilir (**Ek bilgi → Yine de çalıştır**). İsterseniz kaynak koddan kendiniz derleyebilirsiniz (bkz. *Geliştirme*).
+- Kurulum dosyası henüz kod imzalı değildir. Chrome indirmeyi engellerse Ctrl+J ile İndirilenler'i açıp dosyanın menüsünden **Yine de sakla**'yı seçin; Windows SmartScreen uyarı verirse **Ek bilgi → Yine de çalıştır**. İsterseniz kaynak koddan kendiniz derleyebilirsiniz (bkz. *Geliştirme*).
 
 ## Neler yapar
 
@@ -177,13 +177,11 @@ git tag v1.2.0
 git push origin v1.2.0
 ```
 
-[Sürüm yayınla](.github/workflows/release.yml) iş akışı testleri çalıştırır, uygulamayı derler, SignPath ile imzalar (her imza isteği elle onaylanır), Velopack ile paketler, GitHub Releases'a yükler ve evrakci.netlify.app'teki güncelleme klasörünü yeniler. Gereken depo ayarları iş akışı dosyasının başında yazılıdır. Delta paket kapalıdır (uygulama başlığındaki Türkçe harfler yüzünden), güncellemeler tam paket olarak iner. `tools\yayinla.ps1` aynı işi imzasız olarak yerel bilgisayardan yapar; yalnızca acil durumda kullanılır.
+[Sürüm yayınla](.github/workflows/release.yml) iş akışı testleri çalıştırır, uygulamayı derler, SignPath ayarları girilmişse imzalar, Velopack ile paketler, GitHub Releases'a yükler ve evrakci.netlify.app'teki güncelleme klasörünü yeniler. Gereken depo ayarları iş akışı dosyasının başında yazılıdır. Delta paket kapalıdır (uygulama başlığındaki Türkçe harfler yüzünden), güncellemeler tam paket olarak iner. `tools\yayinla.ps1` aynı işi imzasız olarak yerel bilgisayardan yapar; yalnızca acil durumda kullanılır.
 
-## Kod imzalama (Code signing policy)
+## Kod imzalama
 
-Free code signing provided by [SignPath.io](https://about.signpath.io), certificate by [SignPath Foundation](https://signpath.org).
-
-Windows sürümleri bu depodaki koddan GitHub Actions ile derlenir ve SignPath üzerinden imzalanır. Yalnızca projenin kendi dosyaları (`Evrakci.exe`, `Evrakci.dll`, `Evrakci.Core.dll` ve kurulum dosyası) imzalanır; imza yapılandırmaları `.signpath` klasöründedir. Kod yazan, inceleyen ve imzayı onaylayan: [Cahit Arslan](https://github.com/cahitarslan). Gizlilik ve ayrıntılar: [evrakci.netlify.app/kod-imzalama.html](https://evrakci.netlify.app/kod-imzalama.html).
+Sürümler şimdilik imzasızdır. SignPath Foundation'ın ücretsiz açık kaynak imzalama programına Kasım 2026'da başvuruldu; proje henüz yeterince bilinmediği için kabul edilmedi, görünürlük artınca yeniden başvurulacak. İmza altyapısı hazırdır: [Sürüm yayınla](.github/workflows/release.yml) iş akışı, depoya `SIGNPATH_*` ayarları girilince `Evrakci.exe`, `Evrakci.dll`, `Evrakci.Core.dll` ve kurulum dosyasını SignPath ile imzalar (yapılandırmalar `.signpath` klasöründe). Gizlilik: [evrakci.netlify.app/kod-imzalama.html](https://evrakci.netlify.app/kod-imzalama.html).
 
 ## Geliştirme
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Code signing policy · Kod imzalama politikası · Evrakçı</title>
-<meta name="description" content="Evrakçı Windows kurulum dosyalarının nasıl imzalandığı, kimin onayladığı ve uygulamanın hangi verileri gönderdiği.">
+<title>Gizlilik ve kurulum güvenliği · Evrakçı</title>
+<meta name="description" content="Evrakçı kurulum dosyalarının nasıl derlendiği, imza durumu ve uygulamanın hangi verileri gönderdiği.">
 <link rel="canonical" href="https://evrakci.netlify.app/kod-imzalama.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/yazi/yazi.css">
@@ -37,19 +37,18 @@ hr { border: 0; border-top: 1px solid var(--cizgi); margin: 44px 0 0; }
     </picture>
   </a>
 
-  <h1>Code signing policy</h1>
-  <p class="alt">Kod imzalama politikası</p>
+  <h1>Gizlilik ve kurulum güvenliği</h1>
+  <p class="alt">Privacy and release integrity</p>
 
   <section lang="en">
-    <p>Free code signing provided by <a href="https://about.signpath.io">SignPath.io</a>, certificate by <a href="https://signpath.org">SignPath Foundation</a>.</p>
-    <p>Windows releases of Evrakçı (<code>Evrakci-win-Setup.exe</code> and the program files <code>Evrakci.exe</code>, <code>Evrakci.dll</code>, <code>Evrakci.Core.dll</code>) are built from the public source code at <a href="https://github.com/cahitarslan/evrakci">github.com/cahitarslan/evrakci</a> by GitHub Actions and signed through SignPath. Only binaries built from this repository are signed. Third-party components (the .NET runtime, WPF-UI, Velopack) are shipped as published by their maintainers.</p>
+    <p>Windows releases of Evrakçı (<code>Evrakci-win-Setup.exe</code> and the program files <code>Evrakci.exe</code>, <code>Evrakci.dll</code>, <code>Evrakci.Core.dll</code>) are built from the public source code at <a href="https://github.com/cahitarslan/evrakci">github.com/cahitarslan/evrakci</a> by GitHub Actions. They are not code-signed yet, so browsers and Windows SmartScreen may show a warning for a new, unsigned download. Third-party components (the .NET runtime, WPF-UI, Velopack) are shipped as published by their maintainers.</p>
 
     <h3>Team roles</h3>
     <ul>
       <li>Committers and reviewers: <a href="https://github.com/cahitarslan">Cahit Arslan</a></li>
-      <li>Approvers: <a href="https://github.com/cahitarslan">Cahit Arslan</a></li>
+      <li>Release approvers: <a href="https://github.com/cahitarslan">Cahit Arslan</a></li>
     </ul>
-    <p>Every release is approved manually before it is signed. Contributions from other people are reviewed before they are merged.</p>
+    <p>Every release is published by the maintainer. Contributions from other people are reviewed before they are merged.</p>
 
     <h3>Privacy policy</h3>
     <p>Evrakçı works offline. Documents, case files and everything typed into the program stay on the user's computer and are never sent anywhere.</p>
@@ -61,15 +60,14 @@ hr { border: 0; border-top: 1px solid var(--cizgi); margin: 44px 0 0; }
 
   <section lang="tr">
     <h2>Türkçe</h2>
-    <p>Ücretsiz kod imzalama <a href="https://about.signpath.io">SignPath.io</a> tarafından sağlanır, sertifika <a href="https://signpath.org">SignPath Foundation</a>'a aittir.</p>
-    <p>Evrakçı'nın Windows sürümleri (<code>Evrakci-win-Setup.exe</code> ile <code>Evrakci.exe</code>, <code>Evrakci.dll</code>, <code>Evrakci.Core.dll</code>) <a href="https://github.com/cahitarslan/evrakci">github.com/cahitarslan/evrakci</a> adresindeki açık kaynak koddan GitHub Actions ile derlenir ve SignPath üzerinden imzalanır. Yalnızca bu depodan derlenen dosyalar imzalanır; üçüncü taraf bileşenler (.NET çalışma zamanı, WPF-UI, Velopack) yayıncılarının dağıttığı hâliyle gelir.</p>
+    <p>Evrakçı'nın Windows sürümleri (<code>Evrakci-win-Setup.exe</code> ile <code>Evrakci.exe</code>, <code>Evrakci.dll</code>, <code>Evrakci.Core.dll</code>) <a href="https://github.com/cahitarslan/evrakci">github.com/cahitarslan/evrakci</a> adresindeki açık kaynak koddan GitHub Actions ile derlenir. Dosyalar henüz kod imzalı değildir; bu yüzden tarayıcılar ve Windows SmartScreen yeni ve imzasız bir indirmede uyarı gösterebilir. Üçüncü taraf bileşenler (.NET çalışma zamanı, WPF-UI, Velopack) yayıncılarının dağıttığı hâliyle gelir.</p>
 
     <h3>Görevler</h3>
     <ul>
       <li>Kod yazan ve inceleyen: <a href="https://github.com/cahitarslan">Cahit Arslan</a></li>
-      <li>İmzayı onaylayan: <a href="https://github.com/cahitarslan">Cahit Arslan</a></li>
+      <li>Sürümü yayınlayan: <a href="https://github.com/cahitarslan">Cahit Arslan</a></li>
     </ul>
-    <p>Her sürüm imzalanmadan önce elle onaylanır. Başkalarından gelen katkılar birleştirilmeden önce incelenir.</p>
+    <p>Sürümleri proje sahibi yayınlar. Başkalarından gelen katkılar birleştirilmeden önce incelenir.</p>
 
     <h3>Gizlilik</h3>
     <p>Evrakçı internetsiz çalışır. Belgeler, dosyalar ve programa yazılan her şey bilgisayarda kalır; hiçbir yere gönderilmez.</p>
