@@ -17,7 +17,7 @@ Açığı, nasıl tekrarlanacağını ve etkisini yazın. Bildirimde gerçek mü
 
 - `.evrak` dosyalarının şifrelenmesi (AES-256-GCM, PBKDF2-SHA256) ve DPAPI ile saklanan veriler
 - Şablon (`.docx`, `.udf`) açarken zararlı dosyalara karşı korumalar (ZIP bombası, makrolu belgeler)
-- Güncelleme mekanizması (Velopack, `evrakci.netlify.app/guncelleme`)
+- Güncelleme mekanizması (Velopack, `evrakci.cahitarslan.com/guncelleme`)
 
 ## Desteklenen sürümler
 

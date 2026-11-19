@@ -1,7 +1,7 @@
 name: Sürüm yayınla
 
 # Bir "v1.2.3" etiketi gönderilince: test eder, derler, (SignPath ayarlıysa) imzalar, Velopack ile paketler,
-# GitHub Releases'a yükler ve (Netlify anahtarı varsa) evrakci.netlify.app'teki güncelleme klasörünü yeniler.
+# GitHub Releases'a yükler ve (Netlify anahtarı varsa) evrakci.cahitarslan.com'teki güncelleme klasörünü yeniler.
 #
 #   git tag v1.2.0
 #   git push origin v1.2.0
@@ -13,7 +13,7 @@ name: Sürüm yayınla
 #   variable SIGNPATH_SIGNING_POLICY_SLUG  ör. release-signing
 # Site yüklemesi için:
 #   secret   NETLIFY_AUTH_TOKEN            Netlify kişisel erişim anahtarı
-#   variable NETLIFY_SITE_ID               evrakci.netlify.app site kimliği
+#   variable NETLIFY_SITE_ID               evrakci.cahitarslan.com site kimliği
 # SIGNPATH_ORGANIZATION_ID boşken sürüm imzasız yayınlanır.
 
 on:
@@ -142,7 +142,7 @@ jobs:
           VERSION: ${{ steps.v.outputs.version }}
         run: |
           $notes = "Windows 10 ve 11 için. Kurulum: Evrakci-win-Setup.exe · Kurulumsuz: Evrakci-win-Portable.zip`n`n" +
-                   "[Code signing policy / Kod imzalama politikası](https://evrakci.netlify.app/kod-imzalama.html)"
+                   "[Code signing policy / Kod imzalama politikası](https://evrakci.cahitarslan.com/kod-imzalama.html)"
           # Velopack dosyaları da eklenir: site yüklemesi elle yapılacaksa buradan indirilebilir.
           gh release create "v$env:VERSION" Releases/Evrakci-win-Setup.exe Releases/Evrakci-win-Portable.zip `
             "Releases/Evrakci-$env:VERSION-full.nupkg" Releases/releases.win.json Releases/assets.win.json Releases/RELEASES `

@@ -17,7 +17,7 @@
 
 Evrakçı, arabulucuların her dosyada yeniden yazdığı belgeleri (arabulucu belirleme tutanağı, ilk toplantıya davet, bilgilendirme ve ilk oturum tutanağı, anlaşma belgesi, son tutanaklar) tek bir formdan doldurur. Tarafları, tutarları ve tarihleri bir kez yazarsınız; Evrakçı Türkçe ekleri değere göre düzeltir, tutarları yazıyla yazar, TCKN ve IBAN'ı denetler, belgeleri Word ve UYAP biçiminde kaydeder.
 
-Belgeler internetsiz üretilir. Müvekkil bilgileri bilgisayardan çıkmaz, telemetri yoktur. İnternete yalnızca, izin verilirse, yeni sürüm olup olmadığını sormak için çıkılır (bkz. [kod imzalama politikası ve gizlilik](https://evrakci.netlify.app/kod-imzalama.html)).
+Belgeler internetsiz üretilir. Müvekkil bilgileri bilgisayardan çıkmaz, telemetri yoktur. İnternete yalnızca, izin verilirse, yeni sürüm olup olmadığını sormak için çıkılır (bkz. [kod imzalama politikası ve gizlilik](https://evrakci.cahitarslan.com/kod-imzalama.html)).
 
 <p align="center">
   <img src="site/public/gorsel/form-tutar.webp" alt="Form ekranı: tutar girilirken altında belgeye nasıl yazılacağı görünüyor" width="49%">
@@ -26,7 +26,7 @@ Belgeler internetsiz üretilir. Müvekkil bilgileri bilgisayardan çıkmaz, tele
 
 ## İndir
 
-- **Kurulum:** [Evrakci-win-Setup.exe](https://github.com/cahitarslan/evrakci/releases/latest/download/Evrakci-win-Setup.exe) (her zaman son sürüm; [sürüm sayfası](https://github.com/cahitarslan/evrakci/releases/latest), [evrakci.netlify.app](https://evrakci.netlify.app)). Yönetici izni istemez, `%LocalAppData%\Evrakci` altına kurulur ve kendiliğinden güncellenir.
+- **Kurulum:** [Evrakci-win-Setup.exe](https://github.com/cahitarslan/evrakci/releases/latest/download/Evrakci-win-Setup.exe) (her zaman son sürüm; [sürüm sayfası](https://github.com/cahitarslan/evrakci/releases/latest), [evrakci.cahitarslan.com](https://evrakci.cahitarslan.com)). Yönetici izni istemez, `%LocalAppData%\Evrakci` altına kurulur ve kendiliğinden güncellenir.
 - **Taşınabilir:** Aynı sayfadaki `Evrakci-win-Portable.zip` kurulum gerektirmez.
 - Kurulum dosyası henüz kod imzalı değildir. Chrome indirmeyi engellerse Ctrl+J ile İndirilenler'i açıp dosyanın menüsünden **Yine de sakla**'yı seçin; Windows SmartScreen uyarı verirse **Ek bilgi → Yine de çalıştır**. İsterseniz kaynak koddan kendiniz derleyebilirsiniz (bkz. *Geliştirme*).
 
@@ -168,7 +168,7 @@ Logo (dilekçe kâğıdı), renkler ve yazı tipleri `Marka` klasöründedir; ku
 
 ## Güncelleme
 
-[Velopack](https://velopack.io) kullanılır. İlk açılışta kullanıcıya otomatik güncelleme denetimine izin verip vermediği sorulur; izin verilirse uygulama her açılışta `https://evrakci.netlify.app/guncelleme` adresinde yeni sürüm arar (istekte yalnızca sürüm numarası ve mimari gider), arka planda indirir; kapanınca kurulur ya da üstteki **Güncellemeyi yükle** ile hemen yeniden başlar. Denetim, tema menüsündeki **Güncellemeleri otomatik denetle** ile kapatılabilir. Güncelleme yalnızca `Evrakci-win-Setup.exe` ile kurulmuş uygulamada çalışır. Adres `src\Evrakci.App\Services\Distribution.cs` içindedir; çatallar (fork) kendi adreslerini yazmalı ya da boş bırakmalıdır.
+[Velopack](https://velopack.io) kullanılır. İlk açılışta kullanıcıya otomatik güncelleme denetimine izin verip vermediği sorulur; izin verilirse uygulama her açılışta `https://evrakci.cahitarslan.com/guncelleme` adresinde yeni sürüm arar (istekte yalnızca sürüm numarası ve mimari gider), arka planda indirir; kapanınca kurulur ya da üstteki **Güncellemeyi yükle** ile hemen yeniden başlar. Denetim, tema menüsündeki **Güncellemeleri otomatik denetle** ile kapatılabilir. Güncelleme yalnızca `Evrakci-win-Setup.exe` ile kurulmuş uygulamada çalışır. Adres `src\Evrakci.App\Services\Distribution.cs` içindedir (1.2.0 ve öncesi kurulu sürümler eski `evrakci.netlify.app` adresini kullanır; site o adresten de aynı dosyaları sunmaya devam eder); çatallar (fork) kendi adreslerini yazmalı ya da boş bırakmalıdır.
 
 Sürüm yayınlamak (bakımcılar için): `src\Directory.Build.props` içindeki `Version` artırılır, commit gönderilir ve aynı numarayla etiket itilir:
 
@@ -177,11 +177,11 @@ git tag v1.2.0
 git push origin v1.2.0
 ```
 
-[Sürüm yayınla](.github/workflows/release.yml) iş akışı testleri çalıştırır, uygulamayı derler, SignPath ayarları girilmişse imzalar, Velopack ile paketler, GitHub Releases'a yükler ve evrakci.netlify.app'teki güncelleme klasörünü yeniler. Gereken depo ayarları iş akışı dosyasının başında yazılıdır. Delta paket kapalıdır (uygulama başlığındaki Türkçe harfler yüzünden), güncellemeler tam paket olarak iner. `tools\yayinla.ps1` aynı işi imzasız olarak yerel bilgisayardan yapar; yalnızca acil durumda kullanılır.
+[Sürüm yayınla](.github/workflows/release.yml) iş akışı testleri çalıştırır, uygulamayı derler, SignPath ayarları girilmişse imzalar, Velopack ile paketler, GitHub Releases'a yükler ve evrakci.cahitarslan.com'teki güncelleme klasörünü yeniler. Gereken depo ayarları iş akışı dosyasının başında yazılıdır. Delta paket kapalıdır (uygulama başlığındaki Türkçe harfler yüzünden), güncellemeler tam paket olarak iner. `tools\yayinla.ps1` aynı işi imzasız olarak yerel bilgisayardan yapar; yalnızca acil durumda kullanılır.
 
 ## Kod imzalama
 
-Sürümler şimdilik imzasızdır. SignPath Foundation'ın ücretsiz açık kaynak imzalama programına Kasım 2026'da başvuruldu; proje henüz yeterince bilinmediği için kabul edilmedi, görünürlük artınca yeniden başvurulacak. İmza altyapısı hazırdır: [Sürüm yayınla](.github/workflows/release.yml) iş akışı, depoya `SIGNPATH_*` ayarları girilince `Evrakci.exe`, `Evrakci.dll`, `Evrakci.Core.dll` ve kurulum dosyasını SignPath ile imzalar (yapılandırmalar `.signpath` klasöründe). Gizlilik: [evrakci.netlify.app/kod-imzalama.html](https://evrakci.netlify.app/kod-imzalama.html).
+Sürümler şimdilik imzasızdır. SignPath Foundation'ın ücretsiz açık kaynak imzalama programına Kasım 2026'da başvuruldu; proje henüz yeterince bilinmediği için kabul edilmedi, görünürlük artınca yeniden başvurulacak. İmza altyapısı hazırdır: [Sürüm yayınla](.github/workflows/release.yml) iş akışı, depoya `SIGNPATH_*` ayarları girilince `Evrakci.exe`, `Evrakci.dll`, `Evrakci.Core.dll` ve kurulum dosyasını SignPath ile imzalar (yapılandırmalar `.signpath` klasöründe). Gizlilik: [evrakci.cahitarslan.com/kod-imzalama.html](https://evrakci.cahitarslan.com/kod-imzalama.html).
 
 ## Geliştirme
 
@@ -205,7 +205,7 @@ dotnet publish src\Evrakci.App -c Release -r win-x64 --self-contained true `
 | `tools\yayinla.ps1` | Acil durum: imzasız sürümü yerelden paketleyip yayınlar (normalde `.github/workflows/release.yml`) |
 | `.signpath` | SignPath imza yapılandırmaları (SignPath projesine yapıştırılır) |
 | `Sablonlar\Hazır` | Uygulamaya gömülen hazır setler (`SablonUretici` üretir) |
-| `site` | [evrakci.netlify.app](https://evrakci.netlify.app): tanıtım sayfası (statik) ve güncelleme dosyaları |
+| `site` | [evrakci.cahitarslan.com](https://evrakci.cahitarslan.com): tanıtım sayfası (statik) ve güncelleme dosyaları |
 | `Marka` | Logo, ikon ve marka rehberi |
 
 Uygulama ayarları (yalnızca klasör yolları) `%APPDATA%\Evrakci\ayarlar.json` dosyasında tutulur. "Hatırla" ile saklanan değerler `%APPDATA%\Evrakci\hatirlanan.dat` dosyasında, Windows kullanıcısına bağlı olarak (DPAPI) şifreli durur; formdaki "Hatırlananları temizle" hepsini siler. Geçici önizleme dosyaları `%TEMP%\Evrakci` altına yazılır ve uygulama kapanınca silinir.

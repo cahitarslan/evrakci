@@ -1,4 +1,4 @@
-# Evrakçı sürümü yayınlar: kurulum ve güncelleme paketini hazırlar, evrakci.netlify.app'e ve GitHub Releases'a yükler.
+# Evrakçı sürümü yayınlar: kurulum ve güncelleme paketini hazırlar, evrakci.cahitarslan.com'e ve GitHub Releases'a yükler.
 # Kurulu uygulamalar yeni sürümü bir sonraki açılışta kendiliğinden indirir.
 #
 #   .\tools\yayinla.ps1 -Surum 1.1.1             # paketle, siteye ve GitHub'a yükle
@@ -45,7 +45,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Siteye yükleme başarısız." }
 }
 finally { Pop-Location }
-Write-Host "Yayında: https://evrakci.netlify.app/guncelleme/releases.win.json"
+Write-Host "Yayında: https://evrakci.cahitarslan.com/guncelleme/releases.win.json"
 
 # GitHub sürümü: kurulum dosyası ve taşınabilir zip.
 $assets = @(

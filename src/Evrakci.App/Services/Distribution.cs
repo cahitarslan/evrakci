@@ -7,7 +7,7 @@ namespace Evrakci.App.Services;
 public static class Distribution
 {
     /// <summary>Folder the Velopack release files (releases.win.json, *.nupkg) are published to.</summary>
-    public const string UpdateUrl = "https://evrakci.netlify.app/guncelleme";
+    public const string UpdateUrl = "https://evrakci.cahitarslan.com/guncelleme";
 
     /// <summary>Source code and issue tracker; opened from the menu.</summary>
     public const string SourceUrl = "https://github.com/cahitarslan/evrakci";

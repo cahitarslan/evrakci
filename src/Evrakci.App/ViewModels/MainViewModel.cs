@@ -255,7 +255,7 @@ public sealed class MainViewModel : ObservableObject
         if (!_settings.UpdateChoiceMade)
         {
             _settings.CheckForUpdates = await Dialogs.Confirm(
-                "Evrakçı her açılışta evrakci.netlify.app adresine yeni bir sürüm olup olmadığını sorabilir; varsa indirip kapanışta kurar. " +
+                "Evrakçı her açılışta evrakci.cahitarslan.com adresine yeni bir sürüm olup olmadığını sorabilir; varsa indirip kapanışta kurar. " +
                 "İstekte yalnızca kurulu sürüm numarası gider; sizinle, dosyalarınızla ya da müvekkil bilgileriyle ilgili hiçbir şey gönderilmez.\n\n" +
                 "Bu ayarı daha sonra sağ üstteki tema menüsünden (Güncellemeleri otomatik denetle) değiştirebilirsiniz.",
                 "Otomatik güncelleme", "Güncellemeleri denetle", "Denetleme");
