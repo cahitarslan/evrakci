@@ -2,6 +2,20 @@
 [build]
   publish = "public"
 
+# Eski adres (evrakci.netlify.app) ziyaretçileri yeni alan adına gönderir.
+# İstisna: güncelleme klasörü. 1.2.0 ve öncesi kurulu uygulamalar güncellemeyi buradan arar; dosyalar
+# yönlendirilmeden, olduğu gibi sunulur (ilk eşleşen kural uygulanır, var olan dosya doğrudan gelir).
+[[redirects]]
+  from = "https://evrakci.netlify.app/guncelleme/*"
+  to = "/guncelleme/:splat"
+  status = 200
+
+[[redirects]]
+  from = "https://evrakci.netlify.app/*"
+  to = "https://evrakci.cahitarslan.com/:splat"
+  status = 301
+  force = true
+
 # Güncelleme listesi her zaman yeniden sorulsun; paketlerin adı sürümü taşıdığı için önbelleğe alınabilir.
 [[headers]]
   for = "/guncelleme/releases.*.json"
